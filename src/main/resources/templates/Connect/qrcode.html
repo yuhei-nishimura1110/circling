@@ -26,7 +26,7 @@
        
   <script th:inline="javascript"> 
 	const user = /*[[${user}]]*/"user";
-    var inputText = '/connect/'+user;
+    var inputText = 'https://circling-50c7c90b26f2.herokuapp.com/connect/'+user;
 　　 var gBtn = document.getElementById('btn');
     gBtn.onclick = function(){
         document.getElementById('QR').textContent = '';
