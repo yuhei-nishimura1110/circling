@@ -68,7 +68,7 @@ public class ConnectController {
 			}
 		}
 		model.addAttribute("x",x);
-		return "chat/user";
+		return "connect/user";
 	}
 	@PostMapping("/connect/{id}/ed")
 	public String d(Model model, @PathVariable(name = "id") Integer id,
@@ -92,7 +92,7 @@ public class ConnectController {
 			}
 		}
 		model.addAttribute("x",x);
-		return "chat/user";
+		return "connect/user";
 	}
 	@GetMapping("/connect/camera")
 	public String c() {

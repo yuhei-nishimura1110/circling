@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="icon" th:href="@{/storage/white.ico}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<title>詳細</title>
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<div class="displayflexcenter">
+				<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
+
+			</div>
+
+		</header>
+<main>
+	<h3 class="top-1">名前：<span th:text="${youruser.getName()}"></span></h3>
+	<div class="top-1">
+	<div th:if="${x == true}">
+		<a th:href="@{/chat/__${board}__}">
+			トーク
+		</a>
+	</div>
+	<div th:if="${x == false}">
+		<a th:href="@{/connect/__${youruser.getId()}__/ed}">
+			追加
+		</a>
+	</div>
+	</div>
+</main>
+	</div>
+	<footer class="footerchat">
+		<a th:href="@{/home}"><img class="chaticon" th:src="@{/storage/home.jpg}" alt="home"></a>
+		<a th:href="@{/chat}"><img class="chaticon" th:src="@{/storage/chat.jpg}" alt="chat"></a>
+		<a th:href="@{/settings}"><img class="chaticon" th:src="@{/storage/settings.jpg}" alt="settings"></a>
+	</footer>
+</body>
+</html>
