@@ -23,7 +23,7 @@
 	<h3 class="top-1">名前：<span th:text="${youruser.getName()}"></span></h3>
 	<div class="top-1">
 	<div th:if="${x == true}">
-		<a th:href="@{/chat/__${board}__}">
+		<a th:href="@{/chat/__${board.getId()}__}">
 			トーク
 		</a>
 	</div>
