@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" th:href="@{/storage/white.ico}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+  <meta name="viewport" content="width=device-width">
+  <title>QRコード</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<div class="displayflexcenter">
+				<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
+			</div>
+		</header>
+<p>                 
+	<button id="btn"  >QRコード</button>
+</p>
+<div id="QR" ></div>
+       
+  <script th:inline="javascript"> 
+	const user = /*[[${user}]]*/"user";
+    var inputText = '/connect/'+user;
+　　 var gBtn = document.getElementById('btn');
+    gBtn.onclick = function(){
+        document.getElementById('QR').textContent = '';
+        var qrcode = new QRCode('QR', {
+          text:  inputText,
+          width: 128,
+          height: 128,
+          correctLevel : QRCode.CorrectLevel.H
+        });  
+      };
+  </script>
+  </div>
+  <footer>
+  	<a th:href="@{/home}"><img class="chaticon" th:src="@{/storage/home.jpg}" alt="home"></a>
+  	<a th:href="@{/chat}"><img class="chaticon" th:src="@{/storage/chat.jpg}" alt="chat"></a>
+  	<a th:href="@{/settings}"><img class="chaticon" th:src="@{/storage/settings.jpg}" alt="settings"></a>
+  	<a th:href="@{/connect/qrcode}"><img class="chaticon" th:src="@{/storage/qrcode.jpg}"></a>
+  	<a th:href="@{/connect/camera}"><img class="chaticon" th:src="@{/storage/caamera.jpg}"></a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" th:href="@{/storage/white.ico}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<title>チャット</title>
+</head>
+
+<body>
+	<div class="chatmain">
+		<div class="wrapper">
+			<header>
+				<div class="displayflexcenter">
+					<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
+					<div class="chatmargin">
+						<a th:if="${chattable.getBoard().getName() != null}" th:text="${chattable.getBoard().getName()}"
+							th:href="@{/chat/__${chattable.getBoard().getId()}__/list}" class="chattable"></a>
+						<a th:if="${chattable.getBoard().getName() == null}" th:text="${chattable.getUser().getName()}"
+							th:href="@{/connect/__${chattable.getUser().getId()}__}" class="chattable"></a>
+						
+					</div>
+					<div class="chatmargin2">
+						<a th:href="@{/chat/grope/create}"><img class="chaticon" th:src="@{/storage/cc.jpg}" alt="グループの作成"></a>
+					</div>
+				</div>
+
+			</header>
+			<main>
+
+				<div class="displayinlineblock">
+					<div class="overflow:auto">
+						<table class="chattabletable" border="2">
+
+							<div th:each="chattableList : ${chattableList}">
+								<tbody>
+									<td class="chattabletd">
+										<a class="chattable" th:href="@{/chat/__${chattableList.getBoard().getId()}__}">
+											<span th:text="${chattableMap.get(chattableList.getBoard())}"
+												class="chattablespan"></span>
+											<br>
+											<span th:if="${lastchatMap.get(chattableList.getBoard()) != null}"
+												th:text="${lastchatMap.get(chattableList.getBoard()).getChat()}"></span>
+										</a>
+									</td>
+								</tbody>
+							</div>
+						</table>
+					</div>
+				</div>
+				<div class="chatborder">
+					<div id="scrolldown">
+						<div th:each="chat : ${chat}" class="message">
+							<div th:if="${chat.getUser() == user}" class="mychat">
+								<span th:text="${chat.getTime()}" class="timechat righttime"></span>
+
+								<span th:text="${chat.getUser().getName()}"></span>
+								<br>
+								<div class="mychatbox">
+									<div class="mychatcontent">
+										<p class="chat" th:text="${chat.getChat()}"></p>
+									</div>
+								</div>
+							</div>
+							<div th:if="${chat.getUser() != user}" class="yourchat">
+								<span th:text="${chat.getUser().getName()}"></span>
+								<span th:text="${chat.getTime()}" class="timechat lefttime"></span>
+								<br>
+								<div class="yourchatbox">
+									<div class="yourchatcontent">
+										<p class="chat" th:text="${chat.getChat()}"></p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="clearboth"></div>
+					</div>
+					<script>
+						let target = document.getElementById('scrolldown');
+						target.scrollIntoView(false);
+					</script>
+				</div>
+
+			</main>
+		</div>
+		<footer class="footerchat">
+			<form method="post" th:action="@{/chat/__${chattable.getBoard().getId()}__}" th:object="${chatForm}"
+				autocomplete="off">
+				<div class="chatform">
+					<input type="text" th:field="*{chat}" class="chatinput">
+					<button type="submit">送信</button>
+				</div>
+			</form>
+			<a th:href="@{/home}"><img class="chaticon" th:src="@{/storage/home.jpg}" alt="home"></a>
+			<a th:href="@{/chat}"><img class="chaticon" th:src="@{/storage/chat.jpg}" alt="chat"></a>
+			<a th:href="@{/settings}"><img class="chaticon" th:src="@{/storage/settings.jpg}" alt="settings"></a>
+
+
+
+		</footer>
+	</div>
+</body>
+
+</html>

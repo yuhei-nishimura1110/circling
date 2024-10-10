@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" th:href="@{/storage/white.ico}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<title>設定</title>
+</head>
+
+<body>
+	<div class="wrapper">
+	<header>
+		<div class="displayflexcenter">
+			<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
+
+			<div class="loginsignup">
+
+				<form th:action="@{/logout}" method="post"><button type="submit" class="logoutbutton"><img class="login"
+							th:src="@{/storage/logout.jpg}" alt="ログアウト"></button></form>
+
+			</div>
+
+		</div>
+	</header>
+	<main>
+		<h1 class="top-1">設定</h1>
+
+
+
+
+
+
+		<div class="top-1">
+			<table align="center">
+				<tbody>
+					<th>
+						<h4>名前</h4>
+					</th>
+					<td>
+						<span th:text="${user.getName()}"></span>
+						<a th:href="@{/settings/name}">編集</a>
+					</td>
+				</tbody>
+				<tbody>
+					<th>
+						<h4>フリガナ</h4>
+					</th>
+					<td>
+						<span th:text="${user.getFurigana()}"></span>
+						<a th:href="@{/settings/furigana}">編集</a>
+					</td>
+				</tbody>
+				<tbody>
+					<th>
+						<h4>電話番号</h4>
+					</th>
+					<td>
+						<span th:text="${user.getPhoneNumber()}"></span>
+						<a th:href="@{/settings/phoneNumber}">編集</a>
+					</td>
+				</tbody>
+				<tbody>
+					<th>
+						<h4>email</h4>
+					</th>
+					<td>
+						<span th:text="${user.getEmail()}"></span>
+						<a th:href="@{/settings/email}">編集</a>
+					</td>
+				</tbody>
+				<tbody>
+					<th>
+						<h4>パスワード</h4>
+					</th>
+					<td>
+						<span>････････････</span>
+						<a th:href="@{/settings/password}">編集</a>
+					</td>
+				</tbody>
+			</table>
+		</div>
+	</main>
+	</div>
+	<footer>
+		<a th:href="@{/home}"><img class="chaticon" th:src="@{/storage/home.jpg}" alt="home"></a>
+		<a th:href="@{/chat}"><img class="chaticon" th:src="@{/storage/chat.jpg}" alt="chat"></a>
+		<a th:href="@{/settings}"><img class="chaticon" th:src="@{/storage/settings.jpg}" alt="settings"></a>
+	</footer>
+</body>
+
+</html>

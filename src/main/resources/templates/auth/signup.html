@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" th:href="@{/storage/white.ico}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <title>会員登録</title>
+</head>
+
+<body>
+    <header>
+        <div class="displayflexcenter">
+            <a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
+
+            <div class="loginsignup">
+                <a th:href="@{/portfolio}"><img class="login" th:src="@{/storage/kigyou.jpg}" alt="企業様"></a>
+                <a th:href="@{/information}"><img class="login" th:src="@{/storage/information.jpg}" alt="お知らせ"></a>
+                <a th:href="@{/signup/normal}"><img class="login" th:src="@{/storage/signup.jpg}" alt="会員登録"></a>
+                <a th:href="@{/login}"><img class="login" th:src="@{/storage/login.jpg}" alt="ログイン"></a>
+            </div>
+
+        </div>
+    </header>
+    <main>
+
+        <h1 class="top-1">会員登録</h1>
+
+        <form method="post" th:action="@{/signup/__${id}__}" th:object="${signupForm}">
+            <table align="center">
+
+                <tbody>
+                    <td>
+                        <div class="highlights" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tbody>
+                <tbody>
+                    <td><label for="name">名前</label></td>
+                    <td></td>
+                    <td><input type="text" th:field="*{name}" autocomplete="name" autofocus placeholder="佐藤 太郎"></td>
+                </tbody>
+
+                <tbody>
+                    <td>
+                        <div class="highlights" th:if="${#fields.hasErrors('furigana')}" th:errors="*{furigana}"></div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tbody>
+                <tbody>
+                    <td><label for="furigana">フリガナ</label></td>
+                    <td></td>
+                    <td><input type="text" th:field="*{furigana}" placeholder="サトウ タロウ"></td>
+                </tbody>
+
+                <tbody>
+                    <td>
+                        <div class="highlights" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tbody>
+                <tbody>
+                    <td><label for="phoneNumber">電話番号</label></td>
+                    <td></td>
+                    <td><input type="text" th:field="*{phoneNumber}" autocomplete="tel-national"
+                            placeholder="090-1234-5678"></td>
+                </tbody>
+
+                <tbody>
+                    <td>
+                        <div class="highlights" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tbody>
+                <tbody>
+                    <td><label for="email">メールアドレス</label></td>
+                    <td></td>
+                    <td><input type="text" th:field="*{email}" autocomplete="email" placeholder="satou.taro@demo.com">
+                    </td>
+                </tbody>
+
+                <tbody>
+                    <td>
+                        <div class="highlights" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tbody>
+                <tbody>
+                    <td><label for="password">パスワード</label></td>
+                    <td></td>
+                    <td><input type="password" class="form-control" th:field="*{password}" autocomplete="new-password">
+                    </td>
+                </tbody>
+
+                <tbody>
+                    <td>
+                        <div class="highlights" th:if="${#fields.hasErrors('passwordConfirmation')}"
+                            th:errors="*{passwordConfirmation}">
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tbody>
+                <tbody>
+                    <td><label for="passwordConfirmation">パスワード（確認用）</label></td>
+                    <td></td>
+                    <td><input type="password" th:field="*{passwordConfirmation}" autocomplete="new-password"></td>
+                </tbody>
+                <tbody>
+                    <td></td>
+                    <td><button type="submit">登録</button></td>
+                    <td></td>
+                </tbody>
+            </table>
+        </form>
+    </main>
+</body>
+
+</html>

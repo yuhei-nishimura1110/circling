@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="UTF-8">
+	<link rel="icon" th:href="@{/storage/white.ico}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	  <title>QRコード読み取りカメラ</title>
+	  <script src="./jsQR.js"></script>
+	</head>
+	<body>
+		<div class="wrapper">
+				<header>
+					<div class="displayflexcenter">
+						<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
+					</div>
+				</header>
+		<div id="loading">📱 ブラウザのカメラの使用を許可してください。</div>
+	  <canvas id="canvas" hidden></canvas>
+	  <script>
+		const video = document.createElement('video');
+		const canvasElement = document.getElementById('canvas');
+		const canvas = canvasElement.getContext('2d');
+		const loading = document.getElementById('loading');
+		const output = document.getElementById('output');
+		let isReadQR = false;
+		 
+		navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+		  .then((stream) => {
+		    video.srcObject = stream;
+		    video.setAttribute('playsinline', true);
+		    video.play();
+		    requestAnimationFrame(tick);
+		  });
+		 
+		function tick() {
+		  loading.innerText = 'ロード中...';
+		  if (video.readyState === video.HAVE_ENOUGH_DATA) {
+		    loading.hidden = true;
+		    canvasElement.hidden = false;
+		    canvasElement.height = video.videoHeight;
+		    canvasElement.width = video.videoWidth;
+		    canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+		    var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+		    var code = jsQR(imageData.data, imageData.width, imageData.height, {
+		      inversionAttempts: 'dontInvert',
+		    });
+		    if (code && !isReadQR) {
+		      location.href = code.data;
+		      isReadQR = true;
+		    }
+		  }
+		  requestAnimationFrame(tick);
+		}
+	  </script>
+	  </div>
+	    <footer>
+	    	<a th:href="@{/home}"><img class="chaticon" th:src="@{/storage/home.jpg}" alt="home"></a>
+	    	<a th:href="@{/chat}"><img class="chaticon" th:src="@{/storage/chat.jpg}" alt="chat"></a>
+	    	<a th:href="@{/settings}"><img class="chaticon" th:src="@{/storage/settings.jpg}" alt="settings"></a>
+	    	<a th:href="@{/connect/qrcode}"><img class="chaticon" th:src="@{/storage/qrcode.jpg}"></a>
+	    	<a th:href="@{/connect/camera}"><img class="chaticon" th:src="@{/storage/caamera.jpg}"></a>
+	    </footer>
+	</body>
+</html>

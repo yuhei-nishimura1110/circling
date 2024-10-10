@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" th:href="@{/storage/white.ico}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<title>グループチャットの作成</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<header>
+			<div class="displayflexcenter">
+				<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
+
+			</div>
+
+		</header>
+		<main>
+			<div class="createindent">
+			<form method=post th:action="@{/chat/grope/create}" th:object="${tableNameForm}">
+				<label for="name">新しいチャットグループの名前</label><br>
+				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+				<div class="createindent">
+				<input type="text" th:field="*{name}" autocomplete="off">
+				</div>
+
+				<div th:each="chattableList : ${chattableList}">
+
+					<input type="checkbox" th:value="${chattableList.getUser().getId()}" name="number">
+					<label th:text="${chattableList.getUser().getName()}"></label>
+				</div>
+				<div class="createindent">
+				<button type="submit">決定</button></div>
+			</form></div>
+		</main>
+	</div>
+	<footer class="footerchat">
+		<a th:href="@{/home}"><img class="chaticon" th:src="@{/storage/home.jpg}" alt="home"></a>
+		<a th:href="@{/chat}"><img class="chaticon" th:src="@{/storage/chat.jpg}" alt="chat"></a>
+		<a th:href="@{/settings}"><img class="chaticon" th:src="@{/storage/settings.jpg}" alt="settings"></a>
+	</footer>
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" th:href="@{/storage/white.ico}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	<title>ログイン</title>
+</head>
+
+<body>
+	<header>
+		<div class="displayflexcenter">
+			<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
+
+			<div class="loginsignup">
+				<a th:href="@{/portfolio}"><img class="login" th:src="@{/storage/kigyou.jpg}" alt="企業様"></a>
+				<a th:href="@{/information}"><img class="login" th:src="@{/storage/information.jpg}" alt="お知らせ"></a>
+				<a th:href="@{/signup/normal}"><img class="login" th:src="@{/storage/signup.jpg}" alt="会員登録"></a>
+				<a th:href="@{/login}"><img class="login" th:src="@{/storage/login.jpg}" alt="ログイン"></a>
+			</div>
+
+		</div>
+	</header>
+	<main>
+		<h1 class="top-1">ログイン</h1>
+		<div th:if="${param.error}" class="loginhighlight">
+			メールアドレスまたはパスワードが正しくありません。
+		</div>
+		<form th:action="@{/login}" method="post">
+			<table align="center">
+				<thead>
+					<th></th>
+					<th></th>
+					<th></th>
+				</thead>
+
+				<tbody>
+					<td>メールアドレス</td>
+					<td></td>
+					<td><input class="logininput" type="text" name="username" autocomplete="email" placeholder="メールアドレス"
+							autofocus><br></td>
+				</tbody>
+				<tbody>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tbody>
+				<tbody>
+					<td>パスワード</td>
+					<td></td>
+					<td><input class="logininput" type="password" name="password" autocomplete="new-password"
+							placeholder="パスワード"></td>
+				</tbody>
+				<tbody>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tbody>
+				<tbody>
+					<td></td>
+					<td><button type="submit">ログイン</button></td>
+					<td></td>
+				</tbody>
+			</table>
+
+		</form>
+	</main>
+</body>
+
+</html>
