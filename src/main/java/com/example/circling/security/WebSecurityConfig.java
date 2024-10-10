@@ -2,8 +2,6 @@ package com.example.circling.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -41,9 +39,5 @@ public class WebSecurityConfig {
      public PasswordEncoder passwordEncoder() {
          return new BCryptPasswordEncoder();
      }
-     @Bean
-     public JavaMailSender javaMailSender() {
-    	 JavaMailSenderImpl mailSender=new JavaMailSenderImpl();
-    	 return mailSender;
-     }
+     
 }

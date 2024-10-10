@@ -3,7 +3,6 @@ import java.util.UUID;
 
 import org.springframework.context.event.EventListener;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 import com.example.circling.entity.User;
@@ -11,11 +10,11 @@ import com.example.circling.service.VerificationTokenService;
 @Component
 public class SignupEventListener {
 	 private final VerificationTokenService verificationTokenService;    
-     private final JavaMailSender javaMailSender;
+     private final MailConfig mailConfig;
      
-     public SignupEventListener(VerificationTokenService verificationTokenService, JavaMailSender mailSender) {
+     public SignupEventListener(VerificationTokenService verificationTokenService, MailConfig mailConfig) {
          this.verificationTokenService = verificationTokenService;        
-         this.javaMailSender = mailSender;
+         this.mailConfig = mailConfig;
      }
  
      @EventListener
@@ -33,6 +32,6 @@ public class SignupEventListener {
          mailMessage.setTo(recipientAddress);
          mailMessage.setSubject(subject);
          mailMessage.setText(message + "\n" + confirmationUrl);
-         javaMailSender.send(mailMessage);
+         mailConfig.getJavaMailSender().send(mailMessage);
      }
 }
