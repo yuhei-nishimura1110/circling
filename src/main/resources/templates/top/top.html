@@ -27,7 +27,9 @@
 		</div>
 	</header>
 	<main>
-		
+		<div th:if="${successMessage}" class="alert alert-info">
+		    <span th:text="${successMessage}"></span>
+		</div>
 	<h1 class="top-1">CirClIng</h1>
 	<div class="indent">
 		<h2>「CirClIng」とは</h2>
