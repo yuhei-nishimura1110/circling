@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.circling.entity.Board;
 import com.example.circling.entity.Chattable;
@@ -70,7 +69,7 @@ public class ConnectController {
 		model.addAttribute("x",x);
 		return "Connect/user";
 	}
-	@PostMapping("/connect/{id}/ed")
+	@GetMapping("/connect/{id}/ed")
 	public String d(Model model, @PathVariable(name = "id") Integer id,
 			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
 		User myuser = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
