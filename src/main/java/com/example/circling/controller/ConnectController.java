@@ -44,7 +44,7 @@ public class ConnectController {
 	public String a(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,Model model) {
 		User user=userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 		model.addAttribute("user",user.getId());
-		return "connect/qrcode";
+		return "Connect/qrcode";
 	}
 	
 	@GetMapping("/connect/{id}")
@@ -68,7 +68,7 @@ public class ConnectController {
 			}
 		}
 		model.addAttribute("x",x);
-		return "connect/user";
+		return "Connect/user";
 	}
 	@PostMapping("/connect/{id}/ed")
 	public String d(Model model, @PathVariable(name = "id") Integer id,
@@ -92,10 +92,10 @@ public class ConnectController {
 			}
 		}
 		model.addAttribute("x",x);
-		return "connect/user";
+		return "Connect/user";
 	}
 	@GetMapping("/connect/camera")
 	public String c() {
-		return "connect/camera";
+		return "Connect/camera";
 	}
 }
