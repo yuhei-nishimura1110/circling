@@ -1942,7 +1942,6 @@ public class BattleController {
 			ides = 1;
 			model.addAttribute("ides", ides);
 			model.addAttribute("message", message);
-			BackForm backForm = new BackForm();
 			return "game/battle/battle";
 		}
 		if (monsterHp.get(0) <= 0 && monsterHp.get(1) <= 0 && monsterHp.get(2) <= 0 && monsterHp.get(3) <= 0
