@@ -13,10 +13,10 @@ import com.example.circling.circling.repository.BoardRepository;
 import com.example.circling.circling.repository.ChatRepository;
 import com.example.circling.circling.repository.ChattableRepository;
 import com.example.circling.circling.repository.UserRepository;
-import com.example.circling.game.Repository.PartyRepository;
-import com.example.circling.game.Repository.User_infoRepository;
 import com.example.circling.game.entity.Party;
 import com.example.circling.game.entity.User_info;
+import com.example.circling.game.repository.PartyRepository;
+import com.example.circling.game.repository.User_infoRepository;
 
 @Service
 public class ConnectService {

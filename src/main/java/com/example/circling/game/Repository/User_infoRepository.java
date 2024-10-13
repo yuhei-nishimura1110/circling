@@ -1,4 +1,4 @@
-package com.example.circling.game.Repository;
+package com.example.circling.game.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

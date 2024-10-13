@@ -1,4 +1,4 @@
-package com.example.circling.game.Forn;
+package com.example.circling.game.form;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

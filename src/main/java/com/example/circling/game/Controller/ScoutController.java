@@ -1,4 +1,4 @@
-package com.example.circling.game.Controller;
+package com.example.circling.game.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.circling.circling.entity.User;
 import com.example.circling.circling.repository.UserRepository;
-import com.example.circling.game.Forn.ScoutForm;
-import com.example.circling.game.Repository.Family_nameRepository;
-import com.example.circling.game.Repository.PlayerRepository;
-import com.example.circling.game.Repository.User_infoRepository;
-import com.example.circling.game.Scout.Scout;
-import com.example.circling.game.Service.Transformation;
 import com.example.circling.game.entity.Player;
 import com.example.circling.game.entity.User_info;
+import com.example.circling.game.form.ScoutForm;
+import com.example.circling.game.repository.Family_nameRepository;
+import com.example.circling.game.repository.PlayerRepository;
+import com.example.circling.game.repository.User_infoRepository;
+import com.example.circling.game.scout.Scout;
+import com.example.circling.game.service.Transformation;
 import com.example.circling.security.UserDetailsImpl;
 
 @RequestMapping("/game/home/scout")

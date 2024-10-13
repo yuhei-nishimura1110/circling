@@ -1,17 +1,17 @@
-package com.example.circling.game.Battle;
+package com.example.circling.game.battle;
 
 import java.util.ArrayList;
 
 import com.example.circling.circling.entity.User;
-import com.example.circling.game.Forn.BattleForm;
-import com.example.circling.game.Repository.ItemRepository;
-import com.example.circling.game.Repository.PlayerRepository;
-import com.example.circling.game.Service.Transformation;
 import com.example.circling.game.entity.Item;
 import com.example.circling.game.entity.Party;
 import com.example.circling.game.entity.Player;
+import com.example.circling.game.form.BattleForm;
+import com.example.circling.game.repository.ItemRepository;
+import com.example.circling.game.repository.PlayerRepository;
+import com.example.circling.game.service.Transformation;
 
-public class main_battle {
+public class Main_battle {
 	public int m(Player player) {
 		int x = 0;
 		int y = 0;

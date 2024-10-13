@@ -1,4 +1,4 @@
-package com.example.circling.game.Controller;
+package com.example.circling.game.controller;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,25 +16,25 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.circling.circling.entity.User;
 import com.example.circling.circling.repository.UserRepository;
-import com.example.circling.game.Forn.PartyForm;
-import com.example.circling.game.Repository.PartyRepository;
-import com.example.circling.game.Repository.PlayerRepository;
-import com.example.circling.game.Repository.User_infoRepository;
-import com.example.circling.game.Service.Transformation;
 import com.example.circling.game.entity.Party;
 import com.example.circling.game.entity.Player;
 import com.example.circling.game.entity.User_info;
+import com.example.circling.game.form.PartyForm;
+import com.example.circling.game.repository.PartyRepository;
+import com.example.circling.game.repository.PlayerRepository;
+import com.example.circling.game.repository.User_infoRepository;
+import com.example.circling.game.service.Transformation;
 import com.example.circling.security.UserDetailsImpl;
 
 @Controller
 @RequestMapping("/game/home/organization")
-public class organizationController {
+public class OrganizationController {
 	private final PlayerRepository playerRepository;
 	private final UserRepository userRepository;
 	private final PartyRepository partyRepository;
 	private final User_infoRepository user_infoRepository;
 
-	public organizationController(PlayerRepository playerRepository, UserRepository userRepository,
+	public OrganizationController(PlayerRepository playerRepository, UserRepository userRepository,
 			PartyRepository partyRepository, User_infoRepository user_infoRepository) {
 		this.playerRepository = playerRepository;
 		this.userRepository = userRepository;

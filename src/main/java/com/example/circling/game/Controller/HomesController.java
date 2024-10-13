@@ -1,4 +1,4 @@
-package com.example.circling.game.Controller;
+package com.example.circling.game.controller;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.circling.circling.entity.User;
 import com.example.circling.circling.repository.UserRepository;
-import com.example.circling.game.Repository.User_infoRepository;
-import com.example.circling.game.Service.Transformation;
 import com.example.circling.game.entity.User_info;
+import com.example.circling.game.repository.User_infoRepository;
+import com.example.circling.game.service.Transformation;
 import com.example.circling.security.UserDetailsImpl;
 
 @Controller

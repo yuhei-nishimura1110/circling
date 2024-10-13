@@ -1,4 +1,4 @@
-package com.example.circling.game.Controller;
+package com.example.circling.game.controller;
 
 import java.util.ArrayList;
 
@@ -17,18 +17,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.circling.circling.entity.User;
 import com.example.circling.circling.repository.UserRepository;
-import com.example.circling.game.Battle.main_battle;
-import com.example.circling.game.Forn.BackForm;
-import com.example.circling.game.Forn.BattleForm;
-import com.example.circling.game.Repository.ItemRepository;
-import com.example.circling.game.Repository.PartyRepository;
-import com.example.circling.game.Repository.PlayerRepository;
-import com.example.circling.game.Repository.User_infoRepository;
-import com.example.circling.game.Service.Transformation;
+import com.example.circling.game.battle.Main_battle;
 import com.example.circling.game.entity.Item;
 import com.example.circling.game.entity.Party;
 import com.example.circling.game.entity.Player;
 import com.example.circling.game.entity.User_info;
+import com.example.circling.game.form.BattleForm;
+import com.example.circling.game.repository.ItemRepository;
+import com.example.circling.game.repository.PartyRepository;
+import com.example.circling.game.repository.PlayerRepository;
+import com.example.circling.game.repository.User_infoRepository;
+import com.example.circling.game.service.Transformation;
 import com.example.circling.security.UserDetailsImpl;
 
 @RequestMapping("/game/home/battle")
@@ -87,7 +86,7 @@ public class BattleController {
 
 	@GetMapping("/{id}")
 	public String battle(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model,
-			@PathVariable(name = "id") Integer id, Transformation transformation, main_battle main_battle,
+			@PathVariable(name = "id") Integer id, Transformation transformation, Main_battle main_battle,
 			@PageableDefault(size = 1000) Pageable pe) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 		System.out.println(user.getName() + "戦闘画面");
@@ -246,7 +245,7 @@ public class BattleController {
 	public String battled(@ModelAttribute @Validated BattleForm battle,
 			@PathVariable(name = "id") Integer id,
 			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model,
-			Transformation transformation, main_battle main_battle) {
+			Transformation transformation, Main_battle main_battle) {
 
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 		Party friendparty = partyRepository.findByUser_idAndCount(user.getId(), 1);
