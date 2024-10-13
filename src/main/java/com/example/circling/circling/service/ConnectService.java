@@ -92,6 +92,7 @@ public class ConnectService {
 		chattableRepository.save(chattable2);
 		User_info user_info=new User_info();
 		user_info.setTime(0);
+		user_info.setUser(user);
 		user_info.setMoney(1000000);
 		user_infoRepository.save(user_info);
 		Party party1=new Party();
