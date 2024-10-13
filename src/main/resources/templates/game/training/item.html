@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link th:href="@{/css/home.css}" rel="stylesheet">
+		<title>ゲーム：アイテム</title>
+	</head>
+	<body>
+		<div class=k>
+			<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span th:text="${transformation.time(user_info.getTime())}"></p>
+				<button type="button" th:onclick="|location.href='__@{/game/home}__'|" >ホームへ戻る</button>
+				<button type="button" th:onclick="|location.href='__@{/game/home/training}__'|" >成長・転職へ戻る</button> 
+				<button type="button" th:onclick="|location.href='__@{/game/home/training/${player.getId()}}__'|" >戦闘員詳細へ戻る</button>
+
+			<div class=divcenter>
+				<table class=center>
+					<thead>
+						<th th:if="${item2 == 1}">攻撃用武器</th>
+						<th>
+							守備用武器
+						</th>
+					</thead>
+				</table>
+			</div>
+				<form  method="post" th:action="@{/game/home/training/__${player.getId()}__/item/ed}" th:object="${itemForm}" th:if="${item1 == 1}" class=center>
+				<select name=player_id th:if="${item2 == 1}">
+					<div th:if="${nowitem1 != null}">
+						<option th:value="${nowitem1.getId()}"><span th:text="${transformation.Item_strong(nowitem1.getItemstrong())} + ${transformation.Item_kind(nowitem1.getItemkind())}"></span></option>
+					</div>
+					<option th:value="${null}">選択なし</option>
+					<div th:each="ite:${itemPage1}">
+						<option th:value="${ite.getId()}"><span th:text="${transformation.Item_strong(ite.getItemstrong())} + ${transformation.Item_kind(ite.getItemkind())}"></span></option>
+					</div>
+				</select>
+				<select name =user_id >
+					<div th:if="${nowitem2 != null}">
+						<option th:value="${nowitem1.getId()}"><span th:text="${transformation.Item_strong(nowitem2.getItemstrong())} + ${transformation.Item_kind(nowitem2.getItemkind())}"></span></option>
+						
+					</div>
+					<option th:value="${null}">選択なし</option>
+					<div th:each="ite:${itemPage2}">
+						<option th:value="${ite.getId()}"><span th:text="${transformation.Item_strong(ite.getItemstrong())} + ${transformation.Item_kind(ite.getItemkind())}"></span></option>
+					</div>
+				</select>
+				<br>
+				<button type="submit">装着</button>
+			</form>
+		</div>
+
+	</body>
+</html>

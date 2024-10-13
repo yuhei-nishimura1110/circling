@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link th:href="@{/css/home.css}" rel="stylesheet">
+		<title>ゲーム：スカウト</title>
+	</head>
+	<body>
+		<div class=k>
+			<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span th:text="${transformation.time(user_info.getTime())}"></p>
+				<button type="button" th:onclick="|location.href='__@{/game/home}__'|" >ホームへ戻る</button>
+				<button type="button" th:onclick="|location.href='__@{/game/home/training}__'|" >成長・転職へ行く</button> 
+<div class=center><div th:if="${successMessage}">
+				<span th:text="${successMessage}"></span>
+			</div><br><br><br>
+			<form method="post" th:action="@{/game/home/scout/result}" th:object="${scoutForm}">
+				<lavel>名前</lavel>
+				<input type="text" th:field="*{name}"><br>
+				<button type="submit">スカウトする</button>
+			</form>
+			
+			<div><br><br>
+				<span>名前</span>
+				<span th:text="${player.getName()}"></span><br>
+				<span>HP:</span>
+				<span th:text="${player.getHp()}"></span>
+				<span>   MP:</span>
+				<span th:text="${player.getMp()}"></span>
+				<span>   FP:</span>
+				<span th:text="${player.getFp()}"></span>
+				<span>   CP:</span>
+				<span th:text="${player.getCp()}"></span><br>
+				<span>筋力:</span>
+				<span th:text="${transformation.Fluctuation_Status(player.getMuscle())}"></span>
+				<span>   俊敏:</span>
+				<span th:text="${transformation.Fluctuation_Status(player.getQuick())}"></span>
+				<span>   技術:</span>
+				<span th:text="${transformation.Fluctuation_Status(player.getTechnique())}"></span>
+				<span>   魔術:</span>
+				<span th:text="${transformation.Fluctuation_Status(player.getMagic())}"></span>
+				<span>   精神:</span>
+				<span th:text="${transformation.Fluctuation_Status(player.getSpirit())}"></span>
+				<span>   学力:</span>
+				<span th:text="${transformation.Fluctuation_Status(player.getKnowledge())}"></span>
+				<span>   体力:</span>
+				<span th:text="${transformation.Fluctuation_Status(player.getStamina())}"></span>
+				<span>   食力:</span>
+				<span th:text="${transformation.Fluctuation_Status(player.getEating())}"></span><br>
+				<span>職業:</span>
+				<span th:text="${transformation.Job(player.getJob())}"> </span>
+				<span>:</span>
+				<span th:text="${transformation.jobskil(player,player.getJob())}"></span>
+			</div>
+		</div></div>
+	</body>
+</html>

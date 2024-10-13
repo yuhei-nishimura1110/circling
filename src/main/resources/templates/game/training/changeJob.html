@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link th:href="@{/css/home.css}" rel="stylesheet">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<div class=k>
+			<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span th:text="${transformation.time(user_info.getTime())}"></p>
+			<div th:if="${successMessage}"  class=center>
+				<span th:text="${successMessage}"></span>
+			</div>
+			<button type="button" th:onclick="|location.href='__@{/game/home}__'|" >ホームへ戻る</button>
+			<button type="button" th:onclick="|location.href='__@{/game/home/training}__'|" >成長・転職へ戻る</button> 
+			<button type="button" th:onclick="|location.href='__@{/game/home/training/${player.getId()}}__'|" >戦闘員詳細へ戻る</button>
+
+			<div class=divcenter>
+				<table class=center>
+					<thead>
+						<th>現在の職業</th>
+					</thead>
+				
+				<tbody>
+					<td><span th:text="${transformation.Job(player.getJob())}"></span></td>
+				</tbody>
+				</table>
+			</div>
+			
+			
+			<form method="post" th:action="@{/game/home/training/__${player.getId()}__/changejobed}" th:object="${changejob}" class=center>
+				<select name="job">
+					<div th:if="${player.getJob()>2}">
+						<li th:each="i :${#numbers.sequence(1,player.getJob()-1)}">
+							<option th:value="${i}"><span th:text="${transformation.Job(i)}"></span></option>
+						</li>
+					</div>
+					<div th:if="${player.getJob()<16}">
+						<li th:each="i :${#numbers.sequence(player.getJob()+1,18)}">
+							<option th:value="${i}"><span th:text="${transformation.Job(i)}"></span></option>
+						</li>
+					</div>
+				</select>
+				<br>
+				<button type=submit>決定</button>
+			</form>
+		</div>
+	</body>
+</html>

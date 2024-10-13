@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link th:href="@{/css/home.css}" rel="stylesheet">
+		<title>ゲーム：戦闘</title>
+	</head>
+	<body>
+		<div class=k>
+			<button type="button" th:onclick="|location.href='__@{/game/home}__'|" >ホームに戻る</button><br><br>
+			<h5 class=center>戦闘</h5><br>
+			<div class=divcenter>
+				<div class=flex>
+					<div th:if="${battleForm.getH1() > 0}" class=border>
+						<span th:text="${enemyparty.getPlayer1().getName()}"></span><br>
+						<span>HP</span><span th:text="${battleForm.getH1()} + '/' + ${enemyparty.getPlayer1().getHp()}"></span>
+					</div>
+					<div th:if="${battleForm.getH2() > 0}" class=border>
+						<span th:text="${enemyparty.getPlayer1().getName()}"></span><br>
+						<span>HP</span><span th:text="${battleForm.getH2()} + '/' + ${enemyparty.getPlayer2().getHp()}"></span>
+					</div>
+					<div th:if="${battleForm.getH3() > 0}" class=border>
+						<span th:text="${enemyparty.getPlayer1().getName()}"></span><br>
+						<span>HP</span><span th:text="${battleForm.getH3()} + '/' + ${enemyparty.getPlayer3().getHp()}"></span>
+					</div>
+					<div th:if="${battleForm.getH4() > 0}" class=border>
+						<span th:text="${enemyparty.getPlayer1().getName()}"></span><br>
+						<span>HP</span><span th:text="${battleForm.getH4()} + '/' + ${enemyparty.getPlayer4().getHp()}"></span>
+					</div>
+					<div th:if="${battleForm.getH5() > 0}" class=border>
+						<span th:text="${enemyparty.getPlayer1().getName()}"></span><br>
+						<span>HP</span><span th:text="${battleForm.getH5()} + '/' + ${enemyparty.getPlayer5().getHp()}"></span>
+					</div>
+					<div th:if="${battleForm.getH6() > 0}" class=border>
+						<span th:text="${enemyparty.getPlayer1().getName()}"></span><br>
+						<span>HP</span><span th:text="${battleForm.getH6()} + '/' + ${enemyparty.getPlayer6().getHp()}"></span>
+					</div>
+					<div th:if="${battleForm.getH7() > 0}" class=border>
+						<span th:text="${enemyparty.getPlayer1().getName()}"></span><br>
+						<span>HP</span><span th:text="${battleForm.getH7()} + '/' + ${enemyparty.getPlayer7().getHp()}"></span>
+					</div>
+					<div th:if="${battleForm.getH8() > 0}" class=border>
+						<span th:text="${enemyparty.getPlayer1().getName()}"></span><br>
+						<span>HP</span><span th:text="${battleForm.getH8()} + '/' + ${enemyparty.getPlayer8().getHp()}"></span>
+					</div>
+				</div>
+			</div><br><br><br><br>
+			<form method="post" th:action="@{/game/home/battle/__${id}__/ed}" th:object="${battleForm}">
+				<div class=divcenter>
+					<div class="flex">
+						<div th:if="${friendparty.getPlayer1() != null}" class=border>
+							<span th:text="${friendparty.getPlayer1.getName()}"></span>
+							<span th:text="${transformation.Job(friendparty.getPlayer1.getJob())}"></span><br>
+							<span>HP</span><span th:text="${friendparty.getPlayer1().getHp()} + '/' + ${friendparty.getPlayer1().getStamina() * friendparty.getPlayer1().getStamina() * friendparty.getPlayer1().getMuscle()}"></span>
+							<span>MP</span><span th:text="${friendparty.getPlayer1().getMp()} + '/' + ${friendparty.getPlayer1().getMagic() * friendparty.getPlayer1().getMagic() * friendparty.getPlayer1().getTechnique()}"></span><br>
+							<select name=player1>
+								<option th:value="${0}">待機</option>
+								<div th:if="${friendparty.getPlayer1().getJob() < 11}">
+								
+									<option th:value="${1}" th:if="${friendparty.getPlayer1().getJob() < 9}">攻撃</option>
+									<option th:value="${2}"th:if="${friendparty.getPlayer1().getJob() < 9}">連係攻撃</option>
+									<option th:value="${1}"th:if="${friendparty.getPlayer1().getJob() > 8}">防御</option>
+									<option th:value="${2}"th:if="${friendparty.getPlayer1().getJob() > 8}">連係防御</option>
+								</div>
+								<div th:if="${friendparty.getPlayer1().getJob() == 11}">
+								
+									<option th:if="${friendparty.getPlayer2() != null}" th:value="${21}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer2() != null}" th:value="${22}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer3() != null}" th:value="${31}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer3() != null}" th:value="${32}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer4() != null}" th:value="${41}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer4() != null}" th:value="${42}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer5() != null}" th:value="${51}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer5() != null}" th:value="${52}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer6() != null}" th:value="${61}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer6() != null}" th:value="${62}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer7() != null}" th:value="${71}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer7() != null}" th:value="${72}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer8() != null}" th:value="${81}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer8() != null}" th:value="${82}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のMPを回復</option>
+								</div>
+							</select>
+						</div>
+						<div th:if="${friendparty.getPlayer2() != null}" class=border>
+							<span th:text="${friendparty.getPlayer2.getName()}"></span>
+							<span th:text="${transformation.Job(friendparty.getPlayer2.getJob())}"></span><br>
+							<span>HP</span><span th:text="${friendparty.getPlayer2().getHp()} + '/' + ${friendparty.getPlayer2().getStamina() * friendparty.getPlayer2().getStamina() * friendparty.getPlayer2().getMuscle()}"></span>
+							<span>MP</span><span th:text="${friendparty.getPlayer2().getMp()} + '/' + ${friendparty.getPlayer2().getMagic() * friendparty.getPlayer2().getMagic() * friendparty.getPlayer2().getTechnique()}"></span><br>
+							<select name=player2>
+								<option th:value="${0}">待機</option>
+								<div th:if="${friendparty.getPlayer2().getJob() < 11}">
+									
+									<option th:value="${1}" th:if="${friendparty.getPlayer2().getJob() < 9}">攻撃</option>
+									<option th:value="${2}"th:if="${friendparty.getPlayer2().getJob() < 9}">連係攻撃</option>
+									<option th:value="${1}"th:if="${friendparty.getPlayer2().getJob() > 8}">防御</option>
+									<option th:value="${2}"th:if="${friendparty.getPlayer2().getJob() > 8}">連係防御</option>
+								</div>
+								<div th:if="${friendparty.getPlayer2().getJob() == 11}">
+									
+									<option th:if="${friendparty.getPlayer1() != null}" th:value="${11}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer1() != null}" th:value="${12}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer3() != null}" th:value="${31}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer3() != null}" th:value="${32}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer4() != null}" th:value="${41}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer4() != null}" th:value="${42}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer5() != null}" th:value="${51}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer5() != null}" th:value="${52}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer6() != null}" th:value="${61}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer6() != null}" th:value="${62}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer7() != null}" th:value="${71}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer7() != null}" th:value="${72}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer8() != null}" th:value="${81}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer8() != null}" th:value="${82}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のMPを回復</option>
+								</div>
+							</select>
+						</div>
+						<div th:if="${friendparty.getPlayer3() != null}" class=border>
+							<span th:text="${friendparty.getPlayer3.getName()}"></span>
+							<span th:text="${transformation.Job(friendparty.getPlayer3.getJob())}"></span><br>
+							<span>HP</span><span th:text="${friendparty.getPlayer3().getHp()} + '/' + ${friendparty.getPlayer3().getStamina() * friendparty.getPlayer3().getStamina() * friendparty.getPlayer3().getMuscle()}"></span>
+							<span>MP</span><span th:text="${friendparty.getPlayer3().getMp()} + '/' + ${friendparty.getPlayer3().getMagic() * friendparty.getPlayer3().getMagic() * friendparty.getPlayer3().getTechnique()}"></span>
+							<br>
+							<select name=player3>
+								<option th:value="${0}">待機</option>
+								<div th:if="${friendparty.getPlayer3().getJob() < 11}">
+								
+								<option th:value="${1}" th:if="${friendparty.getPlayer3().getJob() < 9}">攻撃</option>
+								<option th:value="${2}"th:if="${friendparty.getPlayer3().getJob() < 9}">連係攻撃</option>
+								<option th:value="${1}"th:if="${friendparty.getPlayer3().getJob() > 8}">防御</option>
+								<option th:value="${2}"th:if="${friendparty.getPlayer3().getJob() > 8}">連係防御</option></div>
+								<div th:if="${friendparty.getPlayer3().getJob() == 11}">
+									
+									<option th:if="${friendparty.getPlayer1() != null}" th:value="${11}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer1() != null}" th:value="${12}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer2() != null}" th:value="${21}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer2() != null}" th:value="${22}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer4() != null}" th:value="${41}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer4() != null}" th:value="${42}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer5() != null}" th:value="${51}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer5() != null}" th:value="${52}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer6() != null}" th:value="${61}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer6() != null}" th:value="${62}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer7() != null}" th:value="${71}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer7() != null}" th:value="${72}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のMPを回復</option>
+									<option th:if="${friendparty.getPlayer8() != null}" th:value="${81}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のHPを回復</option>
+									<option th:if="${friendparty.getPlayer8() != null}" th:value="${82}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のMPを回復</option>
+								</div>
+							</select>
+						</div>
+						<div th:if="${friendparty.getPlayer4() != null}" class=border>
+							<span th:text="${friendparty.getPlayer4.getName()}"></span>
+							<span th:text="${transformation.Job(friendparty.getPlayer4.getJob())}"></span><br>
+							<span>HP</span><span th:text="${friendparty.getPlayer4().getHp()} + '/' + ${friendparty.getPlayer4().getStamina() * friendparty.getPlayer4().getStamina() * friendparty.getPlayer4().getMuscle()}"></span>
+							<span>MP</span><span th:text="${friendparty.getPlayer4().getMp()} + '/' + ${friendparty.getPlayer4().getMagic() * friendparty.getPlayer4().getMagic() * friendparty.getPlayer4().getTechnique()}"></span>
+							<br>
+							<select name=player4>
+								<option th:value="${0}">待機</option>
+								<div  th:if="${friendparty.getPlayer4().getJob() < 11}">
+							
+								<option th:value="${1}" th:if="${friendparty.getPlayer4().getJob() < 9}">攻撃</option>
+								<option th:value="${2}"th:if="${friendparty.getPlayer4().getJob() < 9}">連係攻撃</option>
+								<option th:value="${1}"th:if="${friendparty.getPlayer4().getJob() > 8}">防御</option>
+								<option th:value="${2}"th:if="${friendparty.getPlayer4().getJob() > 8}">連係防御</option>
+							</div>
+							<div th:if="${friendparty.getPlayer4().getJob() == 11}">
+								
+								<option th:if="${friendparty.getPlayer1() != null}" th:value="${11}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のHPを回復</option>
+								<option th:if="${friendparty.getPlayer1() != null}" th:value="${12}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のMPを回復</option>
+								<option th:if="${friendparty.getPlayer2() != null}" th:value="${21}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のHPを回復</option>
+								<option th:if="${friendparty.getPlayer2() != null}" th:value="${22}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のMPを回復</option>
+								<option th:if="${friendparty.getPlayer3() != null}" th:value="${31}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のHPを回復</option>
+								<option th:if="${friendparty.getPlayer3() != null}" th:value="${32}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のMPを回復</option>
+								<option th:if="${friendparty.getPlayer5() != null}" th:value="${51}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のHPを回復</option>
+								<option th:if="${friendparty.getPlayer5() != null}" th:value="${52}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のMPを回復</option>
+								<option th:if="${friendparty.getPlayer6() != null}" th:value="${61}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のHPを回復</option>
+								<option th:if="${friendparty.getPlayer6() != null}" th:value="${62}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のMPを回復</option>
+								<option th:if="${friendparty.getPlayer7() != null}" th:value="${71}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のHPを回復</option>
+								<option th:if="${friendparty.getPlayer7() != null}" th:value="${72}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のMPを回復</option>
+								<option th:if="${friendparty.getPlayer8() != null}" th:value="${81}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のHPを回復</option>
+								<option th:if="${friendparty.getPlayer8() != null}" th:value="${82}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のMPを回復</option>
+							</div>
+						</select>
+					</div>
+					<div th:if="${friendparty.getPlayer5() != null}" class=border>
+						<span th:text="${friendparty.getPlayer5.getName()}"></span>
+						<span th:text="${transformation.Job(friendparty.getPlayer5.getJob())}"></span><br>
+						<span>HP</span><span th:text="${friendparty.getPlayer5().getHp()} + '/' + ${friendparty.getPlayer5().getStamina() * friendparty.getPlayer5().getStamina() * friendparty.getPlayer5().getMuscle()}"></span>
+						<span>MP</span><span th:text="${friendparty.getPlayer5().getMp()} + '/' + ${friendparty.getPlayer5().getMagic() * friendparty.getPlayer5().getMagic() * friendparty.getPlayer5().getTechnique()}"></span>
+						<br>
+						<select name=player5 >
+							<option th:value="${0}">待機</option>
+							<div  th:if="${friendparty.getPlayer5().getJob() < 11}">
+						
+							<option th:value="${1}" th:if="${friendparty.getPlayer5().getJob() < 9}">攻撃</option>
+							<option th:value="${2}"th:if="${friendparty.getPlayer5().getJob() < 9}">連係攻撃</option>
+							<option th:value="${1}"th:if="${friendparty.getPlayer5().getJob() > 8}">防御</option>
+							<option th:value="${2}"th:if="${friendparty.getPlayer5().getJob() > 8}">連係防御</option>
+						</div>
+						<div th:if="${friendparty.getPlayer5().getJob() == 11}">
+							
+							<option th:if="${friendparty.getPlayer1() != null}" th:value="${11}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のHPを回復</option>
+							<option th:if="${friendparty.getPlayer1() != null}" th:value="${12}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のMPを回復</option>
+							<option th:if="${friendparty.getPlayer2() != null}" th:value="${21}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のHPを回復</option>
+							<option th:if="${friendparty.getPlayer2() != null}" th:value="${22}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のMPを回復</option>
+							<option th:if="${friendparty.getPlayer3() != null}" th:value="${31}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のHPを回復</option>
+							<option th:if="${friendparty.getPlayer3() != null}" th:value="${32}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のMPを回復</option>
+							<option th:if="${friendparty.getPlayer4() != null}" th:value="${41}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のHPを回復</option>
+							<option th:if="${friendparty.getPlayer4() != null}" th:value="${42}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のMPを回復</option>
+							<option th:if="${friendparty.getPlayer6() != null}" th:value="${61}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のHPを回復</option>
+							<option th:if="${friendparty.getPlayer6() != null}" th:value="${62}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のMPを回復</option>
+							<option th:if="${friendparty.getPlayer7() != null}" th:value="${71}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のHPを回復</option>
+							<option th:if="${friendparty.getPlayer7() != null}" th:value="${72}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のMPを回復</option>
+							<option th:if="${friendparty.getPlayer8() != null}" th:value="${81}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のHPを回復</option>
+							<option th:if="${friendparty.getPlayer8() != null}" th:value="${82}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のMPを回復</option>
+						</div>
+					</select>
+				</div>
+				<div th:if="${friendparty.getPlayer6() != null}" class=border>
+					<span th:text="${friendparty.getPlayer6.getName()}"></span>
+					<span th:text="${transformation.Job(friendparty.getPlayer6.getJob())}"></span><br>
+					<span>HP</span><span th:text="${friendparty.getPlayer6().getHp()} + '/' + ${friendparty.getPlayer6().getStamina() * friendparty.getPlayer6().getStamina() * friendparty.getPlayer6().getMuscle()}"></span>
+					<span>MP</span><span th:text="${friendparty.getPlayer6().getMp()} + '/' + ${friendparty.getPlayer6().getMagic() * friendparty.getPlayer6().getMagic() * friendparty.getPlayer6().getTechnique()}"></span>
+					<br>
+					<select name=player6>
+						<option th:value="${0}">待機</option>
+						<div  th:if="${friendparty.getPlayer6().getJob() < 11}">
+					
+						<option th:value="${1}" th:if="${friendparty.getPlayer6().getJob() < 9}">攻撃</option>
+						<option th:value="${2}"th:if="${friendparty.getPlayer6().getJob() < 9}">連係攻撃</option>
+						<option th:value="${1}"th:if="${friendparty.getPlayer6().getJob() > 8}">防御</option>
+						<option th:value="${2}"th:if="${friendparty.getPlayer6().getJob() > 8}">連係防御</option>
+					</div>
+					<div th:if="${friendparty.getPlayer6().getJob() == 11}">
+					
+						<option th:if="${friendparty.getPlayer1() != null}" th:value="${11}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer1() != null}" th:value="${12}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のMPを回復</option>
+						<option th:if="${friendparty.getPlayer2() != null}" th:value="${21}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer2() != null}" th:value="${22}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のMPを回復</option>
+						<option th:if="${friendparty.getPlayer3() != null}" th:value="${31}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer3() != null}" th:value="${32}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のMPを回復</option>
+						<option th:if="${friendparty.getPlayer4() != null}" th:value="${41}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer4() != null}" th:value="${42}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のMPを回復</option>
+						<option th:if="${friendparty.getPlayer5() != null}" th:value="${51}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer5() != null}" th:value="${52}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のMPを回復</option>
+						<option th:if="${friendparty.getPlayer7() != null}" th:value="${71}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer7() != null}" th:value="${72}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のMPを回復</option>
+						<option th:if="${friendparty.getPlayer8() != null}" th:value="${81}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer8() != null}" th:value="${82}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のMPを回復</option>
+					</div>
+				</select>
+			</div>
+			<div th:if="${friendparty.getPlayer7() != null}" class=border>
+				<span th:text="${friendparty.getPlayer7.getName()}"></span>
+				<span th:text="${transformation.Job(friendparty.getPlayer7.getJob())}"></span><br>
+				<span>HP</span><span th:text="${friendparty.getPlayer7().getHp()} + '/' + ${friendparty.getPlayer7().getStamina() * friendparty.getPlayer7().getStamina() * friendparty.getPlayer7().getMuscle()}"></span>
+				<span>MP</span><span th:text="${friendparty.getPlayer7().getMp()} + '/' + ${friendparty.getPlayer7().getMagic() * friendparty.getPlayer7().getMagic() * friendparty.getPlayer7().getTechnique()}"></span>
+				<br>
+				<select name=player7>
+					<option th:value="${0}">待機</option>
+					<div th:if="${friendparty.getPlayer7().getJob() < 11}">
+					
+						<option th:value="${1}" th:if="${friendparty.getPlayer7().getJob() < 9}">攻撃</option>
+						<option th:value="${2}"th:if="${friendparty.getPlayer7().getJob() < 9}">連係攻撃</option>
+						<option th:value="${1}"th:if="${friendparty.getPlayer7().getJob() > 8}">防御</option>
+						<option th:value="${2}"th:if="${friendparty.getPlayer7().getJob() > 8}">連係防御</option>
+					</div>
+					<div th:if="${friendparty.getPlayer7().getJob() == 11}">
+						
+						<option th:if="${friendparty.getPlayer1() != null}" th:value="${11}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer1() != null}" th:value="${12}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のMPを回復</option>
+						<option th:if="${friendparty.getPlayer2() != null}" th:value="${21}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer2() != null}" th:value="${22}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のMPを回復</option>
+						<option th:if="${friendparty.getPlayer3() != null}" th:value="${31}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer3() != null}" th:value="${32}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のMPを回復</option>
+						<option th:if="${friendparty.getPlayer4() != null}" th:value="${41}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer4() != null}" th:value="${42}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のMPを回復</option>
+						<option th:if="${friendparty.getPlayer5() != null}" th:value="${51}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer5() != null}" th:value="${52}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のMPを回復</option>
+						<option th:if="${friendparty.getPlayer6() != null}" th:value="${61}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer6() != null}" th:value="${62}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のMPを回復</option>
+						<option th:if="${friendparty.getPlayer8() != null}" th:value="${81}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のHPを回復</option>
+						<option th:if="${friendparty.getPlayer8() != null}" th:value="${82}"><span th:text="${friendparty.getPlayer8().getName()}"></span>のMPを回復</option>
+					</div>
+				</select>
+			</div>
+			<div th:if="${friendparty.getPlayer8() != null}" class=border>
+				<span th:text="${friendparty.getPlayer8.getName()}"></span>
+				<span th:text="${transformation.Job(friendparty.getPlayer8.getJob())}"></span><br>
+				<span>HP</span><span th:text="${friendparty.getPlayer8().getHp()} + '/' + ${friendparty.getPlayer8().getStamina() * friendparty.getPlayer8().getStamina() * friendparty.getPlayer8().getMuscle()}"></span>
+				<span>MP</span><span th:text="${friendparty.getPlayer8().getMp()} + '/' + ${friendparty.getPlayer8().getMagic() * friendparty.getPlayer8().getMagic() * friendparty.getPlayer8().getTechnique()}"></span>
+				<br>
+				<select name=player8 >
+					<option th:value="${0}">待機</option><div th:if="${friendparty.getPlayer8().getJob() < 11}">
+					
+					<option th:value="${1}" th:if="${friendparty.getPlayer8().getJob() < 9}">攻撃</option>
+					<option th:value="${2}"th:if="${friendparty.getPlayer8().getJob() < 9}">連係攻撃</option>
+					<option th:value="${1}"th:if="${friendparty.getPlayer8().getJob() > 8}">防御</option>
+					<option th:value="${2}"th:if="${friendparty.getPlayer8().getJob() > 8}">連係防御</option>
+				</div>
+				<div th:if="${friendparty.getPlayer8().getJob() == 11}">
+					
+					<option th:if="${friendparty.getPlayer1() != null}" th:value="${11}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のHPを回復</option>
+					<option th:if="${friendparty.getPlayer1() != null}" th:value="${12}"><span th:text="${friendparty.getPlayer1().getName()}"></span>のMPを回復</option>
+					<option th:if="${friendparty.getPlayer2() != null}" th:value="${21}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のHPを回復</option>
+					<option th:if="${friendparty.getPlayer2() != null}" th:value="${22}"><span th:text="${friendparty.getPlayer2().getName()}"></span>のMPを回復</option>
+					<option th:if="${friendparty.getPlayer3() != null}" th:value="${31}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のHPを回復</option>
+					<option th:if="${friendparty.getPlayer3() != null}" th:value="${32}"><span th:text="${friendparty.getPlayer3().getName()}"></span>のMPを回復</option>
+					<option th:if="${friendparty.getPlayer4() != null}" th:value="${41}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のHPを回復</option>
+					<option th:if="${friendparty.getPlayer4() != null}" th:value="${42}"><span th:text="${friendparty.getPlayer4().getName()}"></span>のMPを回復</option>
+					<option th:if="${friendparty.getPlayer5() != null}" th:value="${51}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のHPを回復</option>
+					<option th:if="${friendparty.getPlayer5() != null}" th:value="${52}"><span th:text="${friendparty.getPlayer5().getName()}"></span>のMPを回復</option>
+					<option th:if="${friendparty.getPlayer6() != null}" th:value="${61}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のHPを回復</option>
+					<option th:if="${friendparty.getPlayer6() != null}" th:value="${62}"><span th:text="${friendparty.getPlayer6().getName()}"></span>のMPを回復</option>
+					<option th:if="${friendparty.getPlayer7() != null}" th:value="${71}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のHPを回復</option>
+					<option th:if="${friendparty.getPlayer7() != null}" th:value="${72}"><span th:text="${friendparty.getPlayer7().getName()}"></span>のMPを回復</option>
+				</div>
+			</select>
+		</div>
+	</div>
+</div><br>
+<div class=divcenter>
+<div class=flex>
+<select name=H1>
+<option th:value="${battleForm.getH1()}"></option>
+</select>
+<select name=H2>
+<option th:value="${battleForm.getH2()}"></option>
+</select>
+<select name=H3>
+<option th:value="${battleForm.getH3()}"></option>
+</select>
+<select name=H4>
+<option th:value="${battleForm.getH4()}"></option>
+</select>
+<select name=H5>
+<option th:value="${battleForm.getH5()}"></option>
+</select>
+<select name=H6>
+<option th:value="${battleForm.getH6()}"></option>
+</select>
+<select name=H7>
+<option th:value="${battleForm.getH7()}"></option>
+</select>
+<select name=H8>
+<option th:value="${battleForm.getH8()}"></option>
+</select>
+</div>
+</div><br>
+<div class=divcenter>		
+<button th:if="${ides==0}" type="submit">ターン開始</button>
+</div>
+</form>
+<form  method="post" th:action="@{/game/home/battle/back}">
+<div class=divcenter>
+<button th:if="${ides==1}" type="submit">ホームに帰還</button>
+</div>
+</form>
+<div each="message:${message}">
+<p><span th:text="${message}"></span></p>
+</div>
+</div>
+</body>
+</html>
