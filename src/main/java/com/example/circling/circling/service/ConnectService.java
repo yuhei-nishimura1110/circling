@@ -38,6 +38,7 @@ public class ConnectService {
 		this.partyRepository = partyRepository;
 	}
 
+	
 	@Transactional
 	public void connect(User user, User userd) {
 		Board borad = new Board();
