@@ -48,6 +48,7 @@ public class BattleController {
 		this.playerRepository = playerRepository;
 	}
 
+	
 	@GetMapping("/menu")
 	public String battlemenu(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model,
 			Transformation transformation) {
