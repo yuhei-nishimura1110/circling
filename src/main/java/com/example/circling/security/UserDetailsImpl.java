@@ -38,6 +38,7 @@ public class UserDetailsImpl implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;
 	}
+	
 
 	// アカウントが期限切れでなければtrueを返す
 	@Override
