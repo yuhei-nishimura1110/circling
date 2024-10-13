@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.circling.entity.User;
 import com.example.circling.form.UserEditEmailForm;
-import com.example.circling.form.UserEditFuriganaForm;
 import com.example.circling.form.UserEditNameForm;
 import com.example.circling.form.UserEditPasswordForm;
-import com.example.circling.form.UserEditPhoneForm;
 import com.example.circling.repository.BoardRepository;
 import com.example.circling.repository.ChatRepository;
 import com.example.circling.repository.ChattableRepository;
@@ -70,25 +68,6 @@ public class HomeController {
 		return "home/name";
 	}
 
-	@GetMapping("/settings/furigana")
-	public String settingsfuri(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
-			Model model) {
-		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		model.addAttribute("user", user);
-		UserEditFuriganaForm userEditFuriganaForm = new UserEditFuriganaForm(user.getFurigana());
-		model.addAttribute("userEditFuriganaForm", userEditFuriganaForm);
-		return "home/furigana";
-	}
-
-	@GetMapping("/settings/phoneNumber")
-	public String settingsphone(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
-			Model model) {
-		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		model.addAttribute("user", user);
-		UserEditPhoneForm userEditPhoneForm = new UserEditPhoneForm(user.getPhoneNumber());
-		model.addAttribute("userEditPhoneForm", userEditPhoneForm);
-		return "home/phoneNumber";
-	}
 
 	@GetMapping("/settings/email")
 	public String settingsemail(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
@@ -123,40 +102,6 @@ public class HomeController {
 		user.setName(userEditNameForm.getName());
 		userRepository.save(user);
 		model.addAttribute("user", user);
-		return "home/settings";
-	}
-
-	@PostMapping("/settings/furigana")
-	public String settingsfuris(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
-			@ModelAttribute @Validated UserEditFuriganaForm userEditFuriganaForm,
-			BindingResult bindingResult,Model model) {
-		
-		if (bindingResult.hasErrors()) {
-			User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-			model.addAttribute("user", user);
-			return "home/furigana";
-		}
-		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		user.setFurigana(userEditFuriganaForm.getFurigana());
-		userRepository.save(user);
-		model.addAttribute("user", user);
-		return "home/settings";
-	}
-
-	@PostMapping("/settings/phoneNumber")
-	public String settingsphones(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
-			@ModelAttribute @Validated UserEditPhoneForm userEditPhoneForm,
-			BindingResult bindingResult,Model model) {
-		
-		if (bindingResult.hasErrors()) {
-			User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-			model.addAttribute("user", user);
-			return "home/phoneNumber";
-		}
-		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		user.setPhoneNumber(userEditPhoneForm.getPhoneNumber());
-		userRepository.save(user);
-		model.addAttribute("user",user);
 		return "home/settings";
 	}
 

@@ -22,26 +22,21 @@
 
 		</header>
 		<main>
-			<a th:href="@{/chat/__${board.getId()}__}" class="indentcome">戻る</a>
-			<div class="list">
-			<a th:href="@{/chat/__${board.getId()}__/come}">招待</a>
-			<a th:href="@{/chat/__${board.getId()}__/settings}">設定</a>
-			</div>
-			<h1 class="top-1"><span th:text="${board.getName()}"></span><span>のメンバー</span></h1>
-			<table align=center>
-				<thead>
-					<th><span th:text="${user.getName()}"></span></th>
-				</thead>
-				<div th:each="chattableList:${chattableList}">
-					<thead th:if="${chattableList.getUser().getId() != user.getId()}">
-						<td>
-							<a th:href="@{/connect/__${chattableList.getUser().getId()}__}">
-								<span th:text="${chattableList.getUser().getName()}"></span>
-							</a>
-						</td>
-					</thead>
+			<a th:href="@{/chat/__${board.getId()}__/list}"class="indentcome">戻る</a>
+			<h1 class="top-1"><span th:text="${board.getName()}"></span><span>に追加</span></h1>
+			<form method=post th:action="@{/chat/__${board.getId()}__/come/ed}" th:object="${comeForm}">
+				<div th:each="chattable:${chattableListselect}">
+					<input type="checkbox" name="menber" th:value="${chattable.getUser().getId()}">
+					<label th:text="${chattable.getUser().getName()}"></label>
 				</div>
-			</table>
+				<div th:if="${chattableListselect.size() == 0}">
+					<span>追加できる人が居ません</span>
+				</div>
+				<div th:if="${chattableListselect.size() != 0}">
+					<button type=submit>招待</button>
+				</div>
+				
+			</form>
 		</main>
 	</div>
 	<footer class="footerchat">

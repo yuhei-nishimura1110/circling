@@ -32,4 +32,7 @@ public class Chattable {
 	
 	@Column(name="time")
 	private LocalDateTime time;
+	
+	@Column(name="ktime")
+	private LocalDateTime dtime;
 }

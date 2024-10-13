@@ -19,7 +19,9 @@
 				<div class="displayflexcenter">
 					<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
 					<div class="chatmargin">
-						<a th:if="${chattable.getBoard().getName() != null}" th:text="${chattable.getBoard().getName()}"
+						<p th:if="${chattable.getBoard().getName() != null && chattable.getBoard().getName().equals('CirClIngNote') == true}">CirClingNote</p>
+						<a th:if="${chattable.getBoard().getName() != null && chattable.getBoard().getName().equals('CirClIngNote') == false}" 
+						th:text="${chattable.getBoard().getName()}"
 							th:href="@{/chat/__${chattable.getBoard().getId()}__/list}" class="chattable"></a>
 						<a th:if="${chattable.getBoard().getName() == null}" th:text="${chattable.getUser().getName()}"
 							th:href="@{/connect/__${chattable.getUser().getId()}__}" class="chattable"></a>

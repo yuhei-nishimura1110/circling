@@ -52,7 +52,7 @@ public class ConnectController {
 		User myuser = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 		User youruser = userRepository.getReferenceById(id);
 		model.addAttribute("youruser", youruser);
-		List<Chattable> chattableList = chattableRepository.findByUserOrderByTimeDesc(myuser);
+		List<Chattable> chattableList = chattableRepository.findByUserOrderByDtimeDesc(myuser);
 		List<Board> boardList = new ArrayList<Board>();
 		for (Chattable i : chattableList) {
 			if (i.getBoard().getName() == null) {
@@ -76,7 +76,7 @@ public class ConnectController {
 		User youruser = userRepository.getReferenceById(id);
 		model.addAttribute("youruser", youruser);
 		connectService.connect(myuser, youruser);
-		List<Chattable> chattableList = chattableRepository.findByUserOrderByTimeDesc(myuser);
+		List<Chattable> chattableList = chattableRepository.findByUserOrderByDtimeDesc(myuser);
 		List<Board> boardList = new ArrayList<Board>();
 		for (Chattable i : chattableList) {
 			if (i.getBoard().getName() == null) {

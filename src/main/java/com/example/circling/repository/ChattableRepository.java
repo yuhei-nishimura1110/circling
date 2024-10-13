@@ -9,7 +9,7 @@ import com.example.circling.entity.Chattable;
 import com.example.circling.entity.User;
 
 public interface ChattableRepository extends JpaRepository<Chattable, Integer>{
-	public List<Chattable> findByUserOrderByTimeDesc(User user);
+	public List<Chattable> findByUserOrderByDtimeDesc(User user);
 	public Chattable findByBoardAndUserNot(Board board,User user);
 	public Chattable findByBoardAndUser(Board board,User user);
 	public List<Chattable> findByBoard(Board board);

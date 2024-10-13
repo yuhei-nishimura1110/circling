@@ -16,45 +16,82 @@
 						<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
 					</div>
 				</header>
-		<div id="loading">📱 ブラウザのカメラの使用を許可してください。</div>
-	  <canvas id="canvas" hidden></canvas>
-	  <script>
-		const video = document.createElement('video');
-		const canvasElement = document.getElementById('canvas');
-		const canvas = canvasElement.getContext('2d');
-		const loading = document.getElementById('loading');
-		const output = document.getElementById('output');
-		let isReadQR = false;
-		 
-		navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
-		  .then((stream) => {
-		    video.srcObject = stream;
-		    video.setAttribute('playsinline', true);
-		    video.play();
-		    requestAnimationFrame(tick);
-		  });
-		 
-		function tick() {
-		  loading.innerText = 'ロード中...';
-		  if (video.readyState === video.HAVE_ENOUGH_DATA) {
-		    loading.hidden = true;
-		    canvasElement.hidden = false;
-		    canvasElement.height = video.videoHeight;
-		    canvasElement.width = video.videoWidth;
-		    canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
-		    var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
-		    var code = jsQR(imageData.data, imageData.width, imageData.height, {
-		      inversionAttempts: 'dontInvert',
-		    });
-		    if (code && !isReadQR) {
-		      location.href = code.data;
-		      isReadQR = true;
-		    }
-		  }
-		  requestAnimationFrame(tick);
-		}
-	  </script>
-	  </div>
+				
+				    <video id="video" autoplay muted playsinline></video>
+				    <canvas id="camera-canvas"></canvas>
+				    <canvas id="rect-canvas"></canvas>
+					<span id="qr-msg">QRコード: 見つかりません</span>
+				</div>
+				<script>
+					const video = document.getElementById('video');
+					let contentWidth;
+					let contentHeight;
+
+					const media = navigator.mediaDevices.getUserMedia({ audio: false, video: {width:640, height:480} })
+					   .then((stream) => {
+					      video.srcObject = stream;
+					      video.onloadeddata = () => {
+					         video.play();
+					         contentWidth = video.clientWidth;
+					         contentHeight = video.clientHeight;
+					         canvasUpdate(); // 次で記述
+					         checkImage(); // 次で記述
+					      }
+					   }).catch((e) => {
+					      console.log(e);
+					   });
+					   
+					   const cvs = document.getElementById('camera-canvas');
+					   const ctx = cvs.getContext('2d');
+					   const canvasUpdate = () => {
+					      cvs.width = contentWidth;
+					      cvs.height = contentHeight;
+					      ctx.drawImage(video, 0, 0, contentWidth, contentHeight);
+					      requestAnimationFrame(canvasUpdate);
+					   }
+					   
+					   const rectCvs = document.getElementById('rect-canvas');
+					   const rectCtx =  rectCvs.getContext('2d');
+					   const checkImage = () => {
+					      // imageDataを作る
+					      const imageData = ctx.getImageData(0, 0, contentWidth, contentHeight);
+					      // jsQRに渡す
+					      const code = jsQR(imageData.data, contentWidth, contentHeight);
+
+					      // 検出結果に合わせて処理を実施
+					      if (code) {
+					         console.log("QRcodeが見つかりました", code);
+					         drawRect(code.location);
+							 document.getElementById('qr-msg').textContent = `QRコード：${code.data}`;
+					      } else {
+					         console.log("QRcodeが見つかりません…", code);
+					         rectCtx.clearRect(0, 0, contentWidth, contentHeight);
+							 document.getElementById('qr-msg').textContent = `QRコード: 見つかりません`;
+					      }
+					      setTimeout(()=>{ checkImage() }, 500);
+					   }
+					   
+					   // 四辺形の描画
+					   const drawRect = (location) => {
+					      rectCvs.width = contentWidth;
+					      rectCvs.height = contentHeight;
+					      drawLine(location.topLeftCorner, location.topRightCorner);
+					      drawLine(location.topRightCorner, location.bottomRightCorner);
+					      drawLine(location.bottomRightCorner, location.bottomLeftCorner);
+					      drawLine(location.bottomLeftCorner, location.topLeftCorner)
+					   }
+
+					   // 線の描画
+					   const drawLine = (begin, end) => {
+					      rectCtx.lineWidth = 4;
+					      rectCtx.strokeStyle = "#F00";
+					      rectCtx.beginPath();
+					      rectCtx.moveTo(begin.x, begin.y);
+					      rectCtx.lineTo(end.x, end.y);
+					      rectCtx.stroke();
+					   }
+					   
+				</script>
 	    <footer>
 	    	<a th:href="@{/home}"><img class="chaticon" th:src="@{/storage/home.jpg}" alt="home"></a>
 	    	<a th:href="@{/chat}"><img class="chaticon" th:src="@{/storage/chat.jpg}" alt="chat"></a>

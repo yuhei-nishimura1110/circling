@@ -22,26 +22,14 @@
 
 		</header>
 		<main>
-			<a th:href="@{/chat/__${board.getId()}__}" class="indentcome">戻る</a>
-			<div class="list">
-			<a th:href="@{/chat/__${board.getId()}__/come}">招待</a>
-			<a th:href="@{/chat/__${board.getId()}__/settings}">設定</a>
-			</div>
-			<h1 class="top-1"><span th:text="${board.getName()}"></span><span>のメンバー</span></h1>
-			<table align=center>
-				<thead>
-					<th><span th:text="${user.getName()}"></span></th>
-				</thead>
-				<div th:each="chattableList:${chattableList}">
-					<thead th:if="${chattableList.getUser().getId() != user.getId()}">
-						<td>
-							<a th:href="@{/connect/__${chattableList.getUser().getId()}__}">
-								<span th:text="${chattableList.getUser().getName()}"></span>
-							</a>
-						</td>
-					</thead>
-				</div>
-			</table>
+			<a th:href="@{/chat/__${board.getId()}__/list}" class="indentcome">戻る</a>
+			<h1 class="top-1"><span th:text="${board.getName()}"></span><span>の名前変更</span></h1>
+			<form method=post th:action="@{/chat/__${board.getId()}__/settings/ed}" th:object="${grupeNameEdit}">
+				<label for="name">名前</label>
+				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+				<input type="text" th:field="*{name}">
+				<button type="submit">変更</button>
+			</form>
 		</main>
 	</div>
 	<footer class="footerchat">

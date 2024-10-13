@@ -45,35 +45,6 @@
                     <td></td>
                     <td><input type="text" th:field="*{name}" autocomplete="name" autofocus placeholder="佐藤 太郎"></td>
                 </tbody>
-
-                <tbody>
-                    <td>
-                        <div class="highlights" th:if="${#fields.hasErrors('furigana')}" th:errors="*{furigana}"></div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tbody>
-                <tbody>
-                    <td><label for="furigana">フリガナ</label></td>
-                    <td></td>
-                    <td><input type="text" th:field="*{furigana}" placeholder="サトウ タロウ"></td>
-                </tbody>
-
-                <tbody>
-                    <td>
-                        <div class="highlights" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">
-                        </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tbody>
-                <tbody>
-                    <td><label for="phoneNumber">電話番号</label></td>
-                    <td></td>
-                    <td><input type="text" th:field="*{phoneNumber}" autocomplete="tel-national"
-                            placeholder="090-1234-5678"></td>
-                </tbody>
-
                 <tbody>
                     <td>
                         <div class="highlights" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>

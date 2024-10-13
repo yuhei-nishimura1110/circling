@@ -175,4 +175,29 @@ footer{
 .createindent{
 	text-indent:35%;
 }
+#video{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    visibility: hidden;
+}
 
+#camera-canvas{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 50;
+}
+
+#rect-canvas{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+}
+.indentcome{
+	text-indent:10%;
+}
+.list{
+	text-align:right;
+}

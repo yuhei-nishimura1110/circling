@@ -38,10 +38,12 @@ public class ConnectService {
 		chattable.setBoard(borad);
 		chattable.setUser(user);
 		chattable.setTime(LocalDateTime.now());
+		chattable.setDtime(LocalDateTime.now());
 		chattableRepository.save(chattable);
 		chattabled.setBoard(borad);
 		chattabled.setUser(userd);
 		chattabled.setTime(LocalDateTime.now());
+		chattabled.setDtime(LocalDateTime.now());
 		chattableRepository.save(chattabled);		
 	}
 	
@@ -54,12 +56,14 @@ public class ConnectService {
 		chattable.setBoard(board);
 		chattable.setUser(user);
 		chattable.setTime(LocalDateTime.now());
+		chattable.setDtime(LocalDateTime.now());
 		chattableRepository.save(chattable);
 		User kuser =userRepository.getReferenceById(1);
 		Chattable kchattable=new Chattable();
 		kchattable.setBoard(board);
 		kchattable.setUser(kuser);
 		kchattable.setTime(LocalDateTime.now());
+		kchattable.setDtime(LocalDateTime.now());
 		chattableRepository.save(kchattable);
 		Chat chat=new Chat();
 		chat.setBoard(board);
@@ -75,6 +79,7 @@ public class ConnectService {
 		chattable2.setBoard(board2);
 		chattable2.setUser(user);
 		chattable2.setTime(LocalDateTime.now());
+		chattable2.setDtime(LocalDateTime.now());
 		chattableRepository.save(chattable2);
 	}
 	@Transactional
@@ -83,6 +88,7 @@ public class ConnectService {
 		chattable.setBoard(board);
 		chattable.setTime(LocalDateTime.now());
 		chattable.setUser(user);
+		chattable.setDtime(LocalDateTime.now());
 		chattableRepository.save(chattable);
 	}
 }

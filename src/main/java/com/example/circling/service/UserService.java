@@ -30,8 +30,6 @@ public class UserService {
         User user = new User();
         Role role = roleRepository.findByName(roles);
         user.setName(signupForm.getName());
-        user.setFurigana(signupForm.getFurigana());
-        user.setPhoneNumber(signupForm.getPhoneNumber());
         user.setEmail(signupForm.getEmail());
         user.setPassword(passwordEncoder.encode(signupForm.getPassword()));
         user.setRole(role);

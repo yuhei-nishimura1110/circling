@@ -12,13 +12,6 @@ public class SignupForm {
 	 @NotBlank(message = "名前を入力してください。")
      private String name;
      
-     @NotBlank(message = "フリガナを入力してください。")
-     private String furigana;
-     
-     
-     @NotBlank(message = "電話番号を入力してください。")
-     private String phoneNumber;
-     
      @NotBlank(message = "メールアドレスを入力してください。")
      @Email(message = "メールアドレスは正しい形式で入力してください。")
      private String email;

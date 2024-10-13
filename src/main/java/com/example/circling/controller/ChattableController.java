@@ -48,7 +48,7 @@ public class ChattableController {
 	public String chat(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			Model model) {
 		User user=userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		List<Chattable> chattableList = chattableRepository.findByUserOrderByTimeDesc(user);
+		List<Chattable> chattableList = chattableRepository.findByUserOrderByDtimeDesc(user);
 		Map<Board,String> chattableMap=new LinkedHashMap<>();
 		Map<Board,Chat> lastchatMap=new LinkedHashMap<>();
 		for(Chattable i :chattableList) {
@@ -70,7 +70,7 @@ public class ChattableController {
 			Model model) {
 		User user=userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 		model.addAttribute("tableNameForm" ,new TableNameForm());
-		List<Chattable> chattable=chattableRepository.findByUserOrderByTimeDesc(user);
+		List<Chattable> chattable=chattableRepository.findByUserOrderByDtimeDesc(user);
 		List<Chattable> chattableList=new ArrayList<>();
 		for(Chattable i :chattable) {
 			if(i.getBoard().getName()==null) {
@@ -86,7 +86,7 @@ public class ChattableController {
 			Model model) {
 		User user=userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 		if (bindingResult.hasErrors()) {
-			List<Chattable> chattable=chattableRepository.findByUserOrderByTimeDesc(user);
+			List<Chattable> chattable=chattableRepository.findByUserOrderByDtimeDesc(user);
 			List<Chattable> chattableList=new ArrayList<>();
 			for(Chattable i :chattable) {
 				if(i.getBoard().getName()==null) {
