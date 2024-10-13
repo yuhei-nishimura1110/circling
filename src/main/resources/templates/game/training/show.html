@@ -1,40 +1,45 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<link th:href="@{/css/home.css}" rel="stylesheet">
-		<title>ゲーム：冒険者詳細</title>
-	</head>
-	<body>
-		<div class=k>
-			<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span th:text="${transformation.time(user_info.getTime())}"></p>
-			<button type="button" th:onclick="|location.href='__@{/game/home}__'|" >ホームへ戻る</button>
-					<button type="button" th:onclick="|location.href='__@{/game/home/training}__'|" >成長・転職へ戻る</button> 
-					<button type="button" th:onclick="|location.href='__@{/game/home/organization/1}__'|" >編成へ行く</button>
-			<div th:if="${successMessage}"  class=center>
-				<span th:text="${successMessage}"></span>
-			</div>
 
-			<div class=divcenter><table class=center><thead>
-				<th>名前</th>
-				<th>職業</th>
-				<th>経験</th>
-				<th>HP</th>
-				
-				<th>MP</th>
-			
-				<th>FP</th>
-			
-				<th>CP</th>
-				
-				<th>筋力</th>
-				<th>俊敏</th>
-				<th>技術</th>
-				<th>魔術</th>
-				<th>精神</th>
-				<th>学力</th>
-				<th>体力</th>
-				<th>食力</th>
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/home.css}" rel="stylesheet">
+	<title>ゲーム：冒険者詳細</title>
+</head>
+
+<body>
+	<div class=k>
+		<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span
+				th:text="${transformation.time(user_info.getTime())}"></p>
+		<button type="button" th:onclick="|location.href='__@{/game/home}__'|">ホームへ戻る</button>
+		<button type="button" th:onclick="|location.href='__@{/game/home/training}__'|">成長・転職へ戻る</button>
+		<button type="button" th:onclick="|location.href='__@{/game/home/organization/1}__'|">編成へ行く</button>
+		<div th:if="${successMessage}" class=center>
+			<span th:text="${successMessage}"></span>
+		</div>
+
+		<div class=divcenter>
+			<table class=center>
+				<thead>
+					<th>名前</th>
+					<th>職業</th>
+					<th>経験</th>
+					<th>HP</th>
+
+					<th>MP</th>
+
+					<th>FP</th>
+
+					<th>CP</th>
+
+					<th>筋力</th>
+					<th>俊敏</th>
+					<th>技術</th>
+					<th>魔術</th>
+					<th>精神</th>
+					<th>学力</th>
+					<th>体力</th>
+					<th>食力</th>
 				</thead>
 				<tbody>
 					<td><span th:text="${player.getName()}"></span></td>
@@ -52,19 +57,24 @@
 					<td><span th:text="${transformation.Fluctuation_Status(player.getKnowledge())}"></span></td>
 					<td><span th:text="${transformation.Fluctuation_Status(player.getStamina())}"></span></td>
 					<td><span th:text="${transformation.Fluctuation_Status(player.getEating())}"></span></td>
-					
+
 				</tbody>
 			</table>
-			
-				
-			</div><br>
-			<div class=center>
-				<button type="button" th:onclick="|location.href='__@{/game/home/training/${player.getId()}/nameEdit}__'|" >名前の変更</button>
-				<button type="button" th:onclick="|location.href='__@{/game/home/training/${player.getId()}/playertraining}__'|" >訓練</button>
-				<button type="button" th:onclick="|location.href='__@{/game/home/training/${player.getId()}/changejob}__'|" >転職</button>
-				<button th:if="${player.getJob < 13}" type="button" th:onclick="|location.href='__@{/home/training/${player.getId()}/item}__'|" >武器装着</button>
-				
-			</div>
+
+
+		</div><br>
+		<div class=center>
+			<button type="button"
+				th:onclick="|location.href='__@{/game/home/training/${player.getId()}/nameEdit}__'|">名前の変更</button>
+			<button type="button"
+				th:onclick="|location.href='__@{/game/home/training/${player.getId()}/playertraining}__'|">訓練</button>
+			<button type="button"
+				th:onclick="|location.href='__@{/game/home/training/${player.getId()}/changejob}__'|">転職</button>
+			<button th:if="${player.getJob < 13}" type="button"
+				th:onclick="|location.href='__@{/home/training/${player.getId()}/item}__'|">武器装着</button>
+
 		</div>
-	</body>
+	</div>
+</body>
+
 </html>

@@ -14,7 +14,7 @@ public class BattleForm {
 	private Integer player6;
 	private Integer player7;
 	private Integer player8;
-	private Integer H1;
+	private int H1;
 
 	private int H2;
 

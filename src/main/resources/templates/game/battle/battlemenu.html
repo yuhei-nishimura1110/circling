@@ -1,100 +1,116 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<link th:href="@{/css/home.css}" rel="stylesheet">
-		<title>戦闘メニュー</title>
-	</head>
-	<body><div class=k>
-		<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span th:text="${transformation.time(user_info.getTime())}"></p>
-			<button type="button" th:onclick="|location.href='__@{/game/home}__'|" >ホームに戻る</button>
-			<main>
+
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/home.css}" rel="stylesheet">
+	<title>戦闘メニュー</title>
+</head>
+
+<body>
+	<div class=k>
+		<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span
+				th:text="${transformation.time(user_info.getTime())}"></p>
+		<button type="button" th:onclick="|location.href='__@{/game/home}__'|">ホームに戻る</button>
+		<main>
 			<div class=divcenter>
-			<table class=center>
-			<thead>
-				<tr>
-					<th>番号</th>
-					<th>名前</th>
-					<th>時間</th>
-					<th>寸評</th>
-					<th>決定</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>東京</td>
-					<td>1時間</td>
-					<td>近くの担当ダンジョン敵はすこぶる弱い</td>
-					<td><button type="button" th:onclick="|location.href='__@{/game/home/battle/menu1}__'|" >決定</button></td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>ベルリン</td>
-					<td>4日</td>
-					<td>ちょび髭に殲滅された後のダンジョン</td>
-					<td><button type="button" th:onclick="|location.href='__@{/game/home/battle/menu2}__'|" >決定</button></td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>北京</td>
-					<td>1日</td>
-					<td>豊富な人的資源で優勢中</td>
-					<td><button type="button" th:onclick="|location.href='__@{/game/home/battle/menu3}__'|" >決定</button></td>
-				</tr>
-				<tr>
-					<td>4</td>
-					<td>スターリングラード</td>
-					<td>4日</td>
-					<td>スターリンによって全力の攻勢は劣勢中</td>
-					<td><button type="button" th:onclick="|location.href='__@{/game/home/battle/menu4}__'|" >決定</button></td>
-				</tr>
-				<tr>
-					<td>5</td>
-					<td>ローマ</td>
-					<td>4日</td>
-					<td>ムッソ君激おこで内戦が起こる寸前</td>
-					<td><button type="button" th:onclick="|location.href='__@{/game/home/battle/menu5}__'|" >決定</button></td>
-				</tr>
-				<tr>
-					<td>6</td>
-					<td>ニューヨーク</td>
-					<td>4日</td>
-					<td>意外と弱い東海岸</td>
-					<td><button type="button" th:onclick="|location.href='__@{/game/home/battle/menu6}__'|" >決定</button></td>
-				</tr>
-				<tr>
-					<td>7</td>
-					<td>パナマシティ</td>
-					<td>5日</td>
-					<td>修復に消える民需</td>
-					<td><button type="button" th:onclick="|location.href='__@{/game/home/battle/menu7}__'|" >決定</button></td>
-				</tr>
-				<tr>
-					<td>8</td>
-					<td>ブエノスアイレス</td>
-					<td>1週間</td>
-					<td>ちょび髭との再会</td>
-					<td><button type="button" th:onclick="|location.href='__@{/game/home/battle/menu8}__'|" >決定</button></td>
-				</tr>
-				<tr>
-					<td>9</td>
-					<td>マドリード</td>
-					<td>4日</td>
-					<td>内戦後ぼろぼろのスペイン</td>
-					<td><button type="button" th:onclick="|location.href='__@{/game/home/battle/menu9}__'|" >決定</button></td>
-				</tr>
-				<tr>
-					<td>10</td>
-					<td>月（魔王戦）</td>
-					<td>1週間</td>
-					<td>これに勝ってもエンドロールはありません。<br>自身のエンドロールを考えて終わってください。</td>
-					<td><button type="button" th:onclick="|location.href='__@{/game/home/battle/moon}__'|" >決定</button></td>
-				</tr>
-				
-			</tbody>
-		</table>
-	</div></main>
-</div>
-	</body>
+				<table class=center>
+					<thead>
+						<tr>
+							<th>番号</th>
+							<th>名前</th>
+							<th>時間</th>
+							<th>寸評</th>
+							<th>決定</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>東京</td>
+							<td>1時間</td>
+							<td>近くの担当ダンジョン敵はすこぶる弱い</td>
+							<td><button type="button"
+									th:onclick="|location.href='__@{/game/home/battle/menu1}__'|">決定</button></td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>ベルリン</td>
+							<td>4日</td>
+							<td>ちょび髭に殲滅された後のダンジョン</td>
+							<td><button type="button"
+									th:onclick="|location.href='__@{/game/home/battle/menu2}__'|">決定</button></td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>北京</td>
+							<td>1日</td>
+							<td>豊富な人的資源で優勢中</td>
+							<td><button type="button"
+									th:onclick="|location.href='__@{/game/home/battle/menu3}__'|">決定</button></td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>スターリングラード</td>
+							<td>4日</td>
+							<td>スターリンによって全力の攻勢は劣勢中</td>
+							<td><button type="button"
+									th:onclick="|location.href='__@{/game/home/battle/menu4}__'|">決定</button></td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td>ローマ</td>
+							<td>4日</td>
+							<td>ムッソ君激おこで内戦が起こる寸前</td>
+							<td><button type="button"
+									th:onclick="|location.href='__@{/game/home/battle/menu5}__'|">決定</button></td>
+						</tr>
+						<tr>
+							<td>6</td>
+							<td>ニューヨーク</td>
+							<td>4日</td>
+							<td>意外と弱い東海岸</td>
+							<td><button type="button"
+									th:onclick="|location.href='__@{/game/home/battle/menu6}__'|">決定</button></td>
+						</tr>
+						<tr>
+							<td>7</td>
+							<td>パナマシティ</td>
+							<td>5日</td>
+							<td>修復に消える民需</td>
+							<td><button type="button"
+									th:onclick="|location.href='__@{/game/home/battle/menu7}__'|">決定</button></td>
+						</tr>
+						<tr>
+							<td>8</td>
+							<td>ブエノスアイレス</td>
+							<td>1週間</td>
+							<td>ちょび髭との再会</td>
+							<td><button type="button"
+									th:onclick="|location.href='__@{/game/home/battle/menu8}__'|">決定</button></td>
+						</tr>
+						<tr>
+							<td>9</td>
+							<td>マドリード</td>
+							<td>4日</td>
+							<td>内戦後ぼろぼろのスペイン</td>
+							<td><button type="button"
+									th:onclick="|location.href='__@{/game/home/battle/menu9}__'|">決定</button></td>
+						</tr>
+						<tr>
+							<td>10</td>
+							<td>月（魔王戦）</td>
+							<td>1週間</td>
+							<td>これに勝ってもエンドロールはありません。<br>自身のエンドロールを考えて終わってください。</td>
+							<td><button type="button"
+									th:onclick="|location.href='__@{/game/home/battle/moon}__'|">決定</button></td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</main>
+	</div>
+</body>
+
 </html>

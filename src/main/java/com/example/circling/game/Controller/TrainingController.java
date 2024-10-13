@@ -1,7 +1,5 @@
 package com.example.circling.game.Controller;
 
-
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -238,7 +236,8 @@ public class TrainingController {
 	}
 
 	@PostMapping("/{id}/item/ed")
-	public String Itemsed(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, @PathVariable(name = "id") Integer id,
+	public String Itemsed(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
+			@PathVariable(name = "id") Integer id,
 			Model model, Transformation transformation,
 			Pageable pageable, @ModelAttribute @Validated ItemForm itemForm) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
@@ -309,7 +308,8 @@ public class TrainingController {
 	}
 
 	@GetMapping("/{id}/delete")
-	public String delete(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, @PathVariable(name = "id") Integer id,
+	public String delete(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
+			@PathVariable(name = "id") Integer id,
 			Model model, Transformation transformation) {
 		Player player = playerRepository.getReferenceById(id);
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
@@ -322,7 +322,8 @@ public class TrainingController {
 	}
 
 	@PostMapping("/{id}/deleted")
-	public String deleted(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, @PathVariable(name = "id") Integer id,
+	public String deleted(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
+			@PathVariable(name = "id") Integer id,
 			RedirectAttributes redirectAttributes) {
 		Player player = playerRepository.getReferenceById(id);
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());

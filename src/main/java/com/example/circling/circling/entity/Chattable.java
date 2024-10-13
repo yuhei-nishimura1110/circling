@@ -21,18 +21,18 @@ public class Chattable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
-	
+
 	@ManyToOne
-	@JoinColumn(name ="board_id")
+	@JoinColumn(name = "board_id")
 	private Board board;
-	
+
 	@ManyToOne
-	@JoinColumn(name ="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
-	
-	@Column(name="time")
+
+	@Column(name = "time")
 	private LocalDateTime time;
-	
-	@Column(name="ktime")
+
+	@Column(name = "ktime")
 	private LocalDateTime dtime;
 }

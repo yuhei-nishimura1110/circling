@@ -37,17 +37,18 @@ public class ConnectController {
 		this.userRepository = userRepository;
 		this.boardRepository = boardRepository;
 		this.chatService = chatService;
-		this.connectService =connectService;
+		this.connectService = connectService;
 	}
+
 	@GetMapping("/connect/qrcode")
-	public String a(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,Model model) {
-		User user=userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		model.addAttribute("user",user.getId());
+	public String a(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
+		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
+		model.addAttribute("user", user.getId());
 		return "circling/Connect/qrcode";
 	}
-	
+
 	@GetMapping("/connect/{id}")
-	public String b(@PathVariable(name = "id") Integer id,@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
+	public String b(@PathVariable(name = "id") Integer id, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			Model model) {
 		User myuser = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 		User youruser = userRepository.getReferenceById(id);
@@ -63,12 +64,13 @@ public class ConnectController {
 		for (Board i : boardList) {
 			if (chattableRepository.findByBoardAndUser(i, youruser) != null) {
 				x = true;
-				model.addAttribute("board",i.getId());
+				model.addAttribute("board", i.getId());
 			}
 		}
-		model.addAttribute("x",x);
+		model.addAttribute("x", x);
 		return "circling/Connect/user";
 	}
+
 	@GetMapping("/connect/{id}/ed")
 	public String d(Model model, @PathVariable(name = "id") Integer id,
 			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
@@ -87,12 +89,13 @@ public class ConnectController {
 		for (Board i : boardList) {
 			if (chattableRepository.findByBoardAndUser(i, youruser) != null) {
 				x = true;
-				model.addAttribute("board",i.getId());
+				model.addAttribute("board", i.getId());
 			}
 		}
-		model.addAttribute("x",x);
+		model.addAttribute("x", x);
 		return "circling/Connect/user";
 	}
+
 	@GetMapping("/connect/camera")
 	public String c() {
 		return "circling/Connect/camera";

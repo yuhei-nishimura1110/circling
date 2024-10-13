@@ -14,34 +14,34 @@
 
 <body>
 	<div class="wrapper">
-	<header>
-		<div class="displayflexcenter">
-			<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
-		</div>
+		<header>
+			<div class="displayflexcenter">
+				<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
+			</div>
 
-	</header>
-	<main>
-		<div class="overflow:auto">
-			<table class="chattabletable" border="2">
+		</header>
+		<main>
+			<div class="overflow:auto">
+				<table class="chattabletable" border="2">
 
-				<div th:each="chattableList : ${chattableList}">
-					<tbody>
-						<td class="chattabletd">
-							<a class="chattable" th:href="@{/chat/__${chattableList.getBoard().getId()}__}">
-								<span th:text="${chattableMap.get(chattableList.getBoard())}"
-									class="chattablespan"></span>
-								<br>
-								<span th:if="${lastchatMap.get(chattableList.getBoard()) != null}"
-									th:text="${lastchatMap.get(chattableList.getBoard()).getChat()}"></span>
-							</a>
-						</td>
-					</tbody>
-				</div>
-			</table>
-		</div>
-	</main>
+					<div th:each="chattableList : ${chattableList}">
+						<tbody>
+							<td class="chattabletd">
+								<a class="chattable" th:href="@{/chat/__${chattableList.getBoard().getId()}__}">
+									<span th:text="${chattableMap.get(chattableList.getBoard())}"
+										class="chattablespan"></span>
+									<br>
+									<span th:if="${lastchatMap.get(chattableList.getBoard()) != null}"
+										th:text="${lastchatMap.get(chattableList.getBoard()).getChat()}"></span>
+								</a>
+							</td>
+						</tbody>
+					</div>
+				</table>
+			</div>
+		</main>
 	</div>
-	
+
 	<footer>
 		<a th:href="@{/home}"><img class="chaticon" th:src="@{/storage/home.jpg}" alt="home"></a>
 		<a th:href="@{/chat}"><img class="chaticon" th:src="@{/storage/chat.jpg}" alt="chat"></a>

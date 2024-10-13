@@ -1,19 +1,22 @@
 <!DOCTYpE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<link th:href="@{/css/home.css}" rel="stylesheet">
-		<title>ゲーム：編成</title>
-	</head>
-	<body>
-		
-		<div class=k>
-			<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span th:text="${transformation.time(user_info.getTime())}"></p>
-			
-				<button type="button" th:onclick="|location.href='__@{/game/home}__'|" >ホームに戻る</button>
-				<button type="button" th:onclick="|location.href='__@{/game/home/training}__'|" >成長・転職へ行く</button>
-				<div class=center>
-					<div th:if="${successMessage}">
+
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/home.css}" rel="stylesheet">
+	<title>ゲーム：編成</title>
+</head>
+
+<body>
+
+	<div class=k>
+		<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span
+				th:text="${transformation.time(user_info.getTime())}"></p>
+
+		<button type="button" th:onclick="|location.href='__@{/game/home}__'|">ホームに戻る</button>
+		<button type="button" th:onclick="|location.href='__@{/game/home/training}__'|">成長・転職へ行く</button>
+		<div class=center>
+			<div th:if="${successMessage}">
 				<span th:text="${successMessage}"></span>
 			</div>
 			<p>編成</p>
@@ -25,97 +28,131 @@
 			<p th:if="${id == 6}">杖職人</p>
 			<p th:if="${id == 7}">教授</p>
 			<p>名職経　　HP:MP:FP:CP:筋俊技魔精学体食<br>前業験　　HP:MP:FP:CP:力敏術術神力力力</p>
-			
-			
+
+
 			<form method="post" th:action="@{/game/home/organization/__${id}__/ed}" th:object="${partyForm}">
 				<select name=player_id1>
 					<div th:if="${party.player1 ne null}">
-						<option th:value="${party.player1.getId()}"><span th:text="${party.player1.getName()} +'  '+ ${transformation.Job(party.player1.getJob())} +'  '+ ${transformation.jobskil(party.player1,party.player1.getJob())} +'    '+${party.player1.getHp()}+'/'+${transformation.H(party.player1)}+':'+${party.player1.getMp()}+'/'+${transformation.M(party.player1)}+':'+${party.player1.getFp()}+'/'+${transformation.F(party.player1)}+':'+${party.player1.getCp()}+'/'+${transformation.C(party.player1)}+':'+${transformation.Fluctuation_Status(party.player1.getMuscle())}+${transformation.Fluctuation_Status(party.player1.getQuick())}+${transformation.Fluctuation_Status(party.player1.getTechnique())}+${transformation.Fluctuation_Status(party.player1.getMagic())}+${transformation.Fluctuation_Status(party.player1.getSpirit())}+${transformation.Fluctuation_Status(party.player1.getKnowledge())}+${transformation.Fluctuation_Status(party.player1.getStamina())}+${transformation.Fluctuation_Status(party.player1.getEating())}"></span></option>
+						<option th:value="${party.player1.getId()}"><span
+								th:text="${party.player1.getName()} +'  '+ ${transformation.Job(party.player1.getJob())} +'  '+ ${transformation.jobskil(party.player1,party.player1.getJob())} +'    '+${party.player1.getHp()}+'/'+${transformation.H(party.player1)}+':'+${party.player1.getMp()}+'/'+${transformation.M(party.player1)}+':'+${party.player1.getFp()}+'/'+${transformation.F(party.player1)}+':'+${party.player1.getCp()}+'/'+${transformation.C(party.player1)}+':'+${transformation.Fluctuation_Status(party.player1.getMuscle())}+${transformation.Fluctuation_Status(party.player1.getQuick())}+${transformation.Fluctuation_Status(party.player1.getTechnique())}+${transformation.Fluctuation_Status(party.player1.getMagic())}+${transformation.Fluctuation_Status(party.player1.getSpirit())}+${transformation.Fluctuation_Status(party.player1.getKnowledge())}+${transformation.Fluctuation_Status(party.player1.getStamina())}+${transformation.Fluctuation_Status(party.player1.getEating())}"></span>
+						</option>
 					</div>
 					<option th:value="${null}">選択なし</option>
 					<div th:each="player :${playerPage}">
-						<option th:value="${player.getId()}"><span th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span></option>
+						<option th:value="${player.getId()}"><span
+								th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span>
+						</option>
 					</div>
-					
-					
+
+
 				</select><br>
 				<select name=player_id2>
 					<div th:if="${party.player2 ne null}">
-						<option th:value="${party.player2.getId()}"><span th:text="${party.player2.getName()} +'  '+ ${transformation.Job(party.player2.getJob())} +'  '+ ${transformation.jobskil(party.player2,party.player2.getJob())} +'    '+${party.player2.getHp()}+'/'+${transformation.H(party.player2)}+':'+${party.player2.getMp()}+'/'+${transformation.M(party.player2)}+':'+${party.player2.getFp()}+'/'+${transformation.F(party.player2)}+':'+${party.player2.getCp()}+'/'+${transformation.C(party.player2)}+':'+${transformation.Fluctuation_Status(party.player2.getMuscle())}+${transformation.Fluctuation_Status(party.player2.getQuick())}+${transformation.Fluctuation_Status(party.player2.getTechnique())}+${transformation.Fluctuation_Status(party.player2.getMagic())}+${transformation.Fluctuation_Status(party.player2.getSpirit())}+${transformation.Fluctuation_Status(party.player2.getKnowledge())}+${transformation.Fluctuation_Status(party.player2.getStamina())}+${transformation.Fluctuation_Status(party.player2.getEating())}"></span></option>
+						<option th:value="${party.player2.getId()}"><span
+								th:text="${party.player2.getName()} +'  '+ ${transformation.Job(party.player2.getJob())} +'  '+ ${transformation.jobskil(party.player2,party.player2.getJob())} +'    '+${party.player2.getHp()}+'/'+${transformation.H(party.player2)}+':'+${party.player2.getMp()}+'/'+${transformation.M(party.player2)}+':'+${party.player2.getFp()}+'/'+${transformation.F(party.player2)}+':'+${party.player2.getCp()}+'/'+${transformation.C(party.player2)}+':'+${transformation.Fluctuation_Status(party.player2.getMuscle())}+${transformation.Fluctuation_Status(party.player2.getQuick())}+${transformation.Fluctuation_Status(party.player2.getTechnique())}+${transformation.Fluctuation_Status(party.player2.getMagic())}+${transformation.Fluctuation_Status(party.player2.getSpirit())}+${transformation.Fluctuation_Status(party.player2.getKnowledge())}+${transformation.Fluctuation_Status(party.player2.getStamina())}+${transformation.Fluctuation_Status(party.player2.getEating())}"></span>
+						</option>
 					</div><br>
 					<option th:value="${null}">選択なし</option>
 					<div th:each="player :${playerPage}">
-						<option th:value="${player.getId()}"><span th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span></option>
+						<option th:value="${player.getId()}"><span
+								th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span>
+						</option>
 					</div><br>
 				</select><br>
 				<select name=player_id3>
 					<div th:if="${party.player3 ne null}">
-						<option th:value="${party.player3.getId()}"><span th:text="${party.player3.getName()} +'  '+ ${transformation.Job(party.player3.getJob())} +'  '+ ${transformation.jobskil(party.player3,party.player3.getJob())} +'    '+${party.player3.getHp()}+'/'+${transformation.H(party.player3)}+':'+${party.player3.getMp()}+'/'+${transformation.M(party.player3)}+':'+${party.player3.getFp()}+'/'+${transformation.F(party.player3)}+':'+${party.player3.getCp()}+'/'+${transformation.C(party.player3)}+':'+${transformation.Fluctuation_Status(party.player3.getMuscle())}+${transformation.Fluctuation_Status(party.player3.getQuick())}+${transformation.Fluctuation_Status(party.player3.getTechnique())}+${transformation.Fluctuation_Status(party.player3.getMagic())}+${transformation.Fluctuation_Status(party.player3.getSpirit())}+${transformation.Fluctuation_Status(party.player3.getKnowledge())}+${transformation.Fluctuation_Status(party.player3.getStamina())}+${transformation.Fluctuation_Status(party.player3.getEating())}"></span></option>
+						<option th:value="${party.player3.getId()}"><span
+								th:text="${party.player3.getName()} +'  '+ ${transformation.Job(party.player3.getJob())} +'  '+ ${transformation.jobskil(party.player3,party.player3.getJob())} +'    '+${party.player3.getHp()}+'/'+${transformation.H(party.player3)}+':'+${party.player3.getMp()}+'/'+${transformation.M(party.player3)}+':'+${party.player3.getFp()}+'/'+${transformation.F(party.player3)}+':'+${party.player3.getCp()}+'/'+${transformation.C(party.player3)}+':'+${transformation.Fluctuation_Status(party.player3.getMuscle())}+${transformation.Fluctuation_Status(party.player3.getQuick())}+${transformation.Fluctuation_Status(party.player3.getTechnique())}+${transformation.Fluctuation_Status(party.player3.getMagic())}+${transformation.Fluctuation_Status(party.player3.getSpirit())}+${transformation.Fluctuation_Status(party.player3.getKnowledge())}+${transformation.Fluctuation_Status(party.player3.getStamina())}+${transformation.Fluctuation_Status(party.player3.getEating())}"></span>
+						</option>
 					</div><br>
 					<option th:value="${null}">選択なし</option>
 					<div th:each="player :${playerPage}">
-						<option th:value="${player.getId()}"><span th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+ ${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span></option>
+						<option th:value="${player.getId()}"><span
+								th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+ ${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span>
+						</option>
 					</div><br>
 				</select><br>
 				<select name=player_id4>
 					<div th:if="${party.player4 ne null}">
-						<option th:value="${party.player4.getId()}"><span th:text="${party.player4.getName()} +'  '+ ${transformation.Job(party.player4.getJob())} +'  '+ ${transformation.jobskil(party.player4,party.player4.getJob())} +'    '+${party.player4.getHp()}+'/'+${transformation.H(party.player4)}+':'+${party.player4.getMp()}+'/'+${transformation.M(party.player4)}+':'+${party.player4.getFp()}+'/'+${transformation.F(party.player4)}+':'+${party.player4.getCp()}+'/'+${transformation.C(party.player4)}+':'+${transformation.Fluctuation_Status(party.player4.getMuscle())}+${transformation.Fluctuation_Status(party.player4.getQuick())}+${transformation.Fluctuation_Status(party.player4.getTechnique())}+${transformation.Fluctuation_Status(party.player4.getMagic())}+${transformation.Fluctuation_Status(party.player4.getSpirit())}+${transformation.Fluctuation_Status(party.player4.getKnowledge())}+${transformation.Fluctuation_Status(party.player4.getStamina())}+${transformation.Fluctuation_Status(party.player4.getEating())}"></span></option>
+						<option th:value="${party.player4.getId()}"><span
+								th:text="${party.player4.getName()} +'  '+ ${transformation.Job(party.player4.getJob())} +'  '+ ${transformation.jobskil(party.player4,party.player4.getJob())} +'    '+${party.player4.getHp()}+'/'+${transformation.H(party.player4)}+':'+${party.player4.getMp()}+'/'+${transformation.M(party.player4)}+':'+${party.player4.getFp()}+'/'+${transformation.F(party.player4)}+':'+${party.player4.getCp()}+'/'+${transformation.C(party.player4)}+':'+${transformation.Fluctuation_Status(party.player4.getMuscle())}+${transformation.Fluctuation_Status(party.player4.getQuick())}+${transformation.Fluctuation_Status(party.player4.getTechnique())}+${transformation.Fluctuation_Status(party.player4.getMagic())}+${transformation.Fluctuation_Status(party.player4.getSpirit())}+${transformation.Fluctuation_Status(party.player4.getKnowledge())}+${transformation.Fluctuation_Status(party.player4.getStamina())}+${transformation.Fluctuation_Status(party.player4.getEating())}"></span>
+						</option>
 					</div>
 					<option th:value="${null}">選択なし</option>
 					<div th:each="player :${playerPage}">
-						<option th:value="${player.getId()}"><span th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+ ${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span></option>
+						<option th:value="${player.getId()}"><span
+								th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+ ${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span>
+						</option>
 					</div><br>
 				</select><br>
 				<select name=player_id5>
 					<div th:if="${party.player5 ne null}">
-						<option th:value="${party.player5.getId()}"><span th:text="${party.player5.getName()} +'  '+ ${transformation.Job(party.player5.getJob())} +'  '+ ${transformation.jobskil(party.player5,party.player5.getJob())} +'    '+${party.player5.getHp()}+'/'+${transformation.H(party.player5)}+':'+${party.player5.getMp()}+'/'+${transformation.M(party.player5)}+':'+${party.player5.getFp()}+'/'+${transformation.F(party.player5)}+':'+${party.player5.getCp()}+'/'+${transformation.C(party.player5)}+':'+${transformation.Fluctuation_Status(party.player5.getMuscle())}+${transformation.Fluctuation_Status(party.player5.getQuick())}+${transformation.Fluctuation_Status(party.player5.getTechnique())}+${transformation.Fluctuation_Status(party.player5.getMagic())}+${transformation.Fluctuation_Status(party.player5.getSpirit())}+${transformation.Fluctuation_Status(party.player5.getKnowledge())}+${transformation.Fluctuation_Status(party.player5.getStamina())}+${transformation.Fluctuation_Status(party.player5.getEating())}"></span></option>
+						<option th:value="${party.player5.getId()}"><span
+								th:text="${party.player5.getName()} +'  '+ ${transformation.Job(party.player5.getJob())} +'  '+ ${transformation.jobskil(party.player5,party.player5.getJob())} +'    '+${party.player5.getHp()}+'/'+${transformation.H(party.player5)}+':'+${party.player5.getMp()}+'/'+${transformation.M(party.player5)}+':'+${party.player5.getFp()}+'/'+${transformation.F(party.player5)}+':'+${party.player5.getCp()}+'/'+${transformation.C(party.player5)}+':'+${transformation.Fluctuation_Status(party.player5.getMuscle())}+${transformation.Fluctuation_Status(party.player5.getQuick())}+${transformation.Fluctuation_Status(party.player5.getTechnique())}+${transformation.Fluctuation_Status(party.player5.getMagic())}+${transformation.Fluctuation_Status(party.player5.getSpirit())}+${transformation.Fluctuation_Status(party.player5.getKnowledge())}+${transformation.Fluctuation_Status(party.player5.getStamina())}+${transformation.Fluctuation_Status(party.player5.getEating())}"></span>
+						</option>
 					</div><br>
 					<option th:value="${null}">選択なし</option>
 					<div th:each="player :${playerPage}">
-						<option th:value="${player.getId()}"><span th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+ ${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span></option>
+						<option th:value="${player.getId()}"><span
+								th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+ ${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span>
+						</option>
 					</div><br>
 				</select><br>
 				<select name=player_id6>
 					<div th:if="${party.player6 ne null}">
-						<option th:value="${party.player6.getId()}"><span th:text="${party.player6.getName()} +'  '+ ${transformation.Job(party.player6.getJob())} +'  '+ ${transformation.jobskil(party.player6,party.player6.getJob())} +'    '+${party.player6.getHp()}+'/'+${transformation.H(party.player6)}+':'+${party.player6.getMp()}+'/'+${transformation.M(party.player6)}+':'+${party.player6.getFp()}+'/'+${transformation.F(party.player6)}+':'+${party.player6.getCp()}+'/'+${transformation.C(party.player6)}+':'+${transformation.Fluctuation_Status(party.player6.getMuscle())}+${transformation.Fluctuation_Status(party.player6.getQuick())}+${transformation.Fluctuation_Status(party.player6.getTechnique())}+${transformation.Fluctuation_Status(party.player6.getMagic())}+${transformation.Fluctuation_Status(party.player6.getSpirit())}+${transformation.Fluctuation_Status(party.player6.getKnowledge())}+${transformation.Fluctuation_Status(party.player6.getStamina())}+${transformation.Fluctuation_Status(party.player6.getEating())}"></span></option>
+						<option th:value="${party.player6.getId()}"><span
+								th:text="${party.player6.getName()} +'  '+ ${transformation.Job(party.player6.getJob())} +'  '+ ${transformation.jobskil(party.player6,party.player6.getJob())} +'    '+${party.player6.getHp()}+'/'+${transformation.H(party.player6)}+':'+${party.player6.getMp()}+'/'+${transformation.M(party.player6)}+':'+${party.player6.getFp()}+'/'+${transformation.F(party.player6)}+':'+${party.player6.getCp()}+'/'+${transformation.C(party.player6)}+':'+${transformation.Fluctuation_Status(party.player6.getMuscle())}+${transformation.Fluctuation_Status(party.player6.getQuick())}+${transformation.Fluctuation_Status(party.player6.getTechnique())}+${transformation.Fluctuation_Status(party.player6.getMagic())}+${transformation.Fluctuation_Status(party.player6.getSpirit())}+${transformation.Fluctuation_Status(party.player6.getKnowledge())}+${transformation.Fluctuation_Status(party.player6.getStamina())}+${transformation.Fluctuation_Status(party.player6.getEating())}"></span>
+						</option>
 					</div><br>
 					<option th:value="${null}">選択なし</option>
 					<div th:each="player :${playerPage}">
-						<option th:value="${player.getId()}"><span th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+ ${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span></option>
+						<option th:value="${player.getId()}"><span
+								th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+ ${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span>
+						</option>
 					</div><br>
 				</select><br>
 				<select name=player_id7>
 					<div th:if="${party.player7 ne null}">
-						<option th:value="${party.player7.getId()}"><span th:text="${party.player7.getName()} +'  '+ ${transformation.Job(party.player7.getJob())} +'  '+ ${transformation.jobskil(party.player7,party.player7.getJob())} +'    '+${party.player7.getHp()}+'/'+${transformation.H(party.player7)}+':'+${party.player7.getMp()}+'/'+${transformation.M(party.player7)}+':'+${party.player7.getFp()}+'/'+${transformation.F(party.player7)}+':'+${party.player7.getCp()}+'/'+${transformation.C(party.player7)}+':'+${transformation.Fluctuation_Status(party.player7.getMuscle())}+${transformation.Fluctuation_Status(party.player7.getQuick())}+${transformation.Fluctuation_Status(party.player7.getTechnique())}+${transformation.Fluctuation_Status(party.player7.getMagic())}+${transformation.Fluctuation_Status(party.player7.getSpirit())}+${transformation.Fluctuation_Status(party.player7.getKnowledge())}+${transformation.Fluctuation_Status(party.player7.getStamina())}+${transformation.Fluctuation_Status(party.player7.getEating())}"></span></option>
+						<option th:value="${party.player7.getId()}"><span
+								th:text="${party.player7.getName()} +'  '+ ${transformation.Job(party.player7.getJob())} +'  '+ ${transformation.jobskil(party.player7,party.player7.getJob())} +'    '+${party.player7.getHp()}+'/'+${transformation.H(party.player7)}+':'+${party.player7.getMp()}+'/'+${transformation.M(party.player7)}+':'+${party.player7.getFp()}+'/'+${transformation.F(party.player7)}+':'+${party.player7.getCp()}+'/'+${transformation.C(party.player7)}+':'+${transformation.Fluctuation_Status(party.player7.getMuscle())}+${transformation.Fluctuation_Status(party.player7.getQuick())}+${transformation.Fluctuation_Status(party.player7.getTechnique())}+${transformation.Fluctuation_Status(party.player7.getMagic())}+${transformation.Fluctuation_Status(party.player7.getSpirit())}+${transformation.Fluctuation_Status(party.player7.getKnowledge())}+${transformation.Fluctuation_Status(party.player7.getStamina())}+${transformation.Fluctuation_Status(party.player7.getEating())}"></span>
+						</option>
 					</div><br>
 					<option th:value="${null}">選択なし</option>
 					<div th:each="player :${playerPage}">
-						<option th:value="${player.getId()}"><span th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+ ${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span></option>
+						<option th:value="${player.getId()}"><span
+								th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+ ${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span>
+						</option>
 					</div><br>
 				</select><br>
 				<select name=player_id8>
 					<div th:if="${party.player8 ne null}">
-						<option th:value="${party.player8.getId()}"><span th:text="${party.player8.getName()} +'  '+ ${transformation.Job(party.player8.getJob())} +'  '+ ${transformation.jobskil(party.player8,party.player8.getJob())} +'    '+${party.player8.getHp()}+'/'+${transformation.H(party.player8)}+':'+${party.player8.getMp()}+'/'+${transformation.M(party.player8)}+':'+${party.player8.getFp()}+'/'+${transformation.F(party.player8)}+':'+${party.player8.getCp()}+'/'+${transformation.C(party.player8)}+':'+${transformation.Fluctuation_Status(party.player8.getMuscle())}+${transformation.Fluctuation_Status(party.player8.getQuick())}+${transformation.Fluctuation_Status(party.player8.getTechnique())}+${transformation.Fluctuation_Status(party.player8.getMagic())}+${transformation.Fluctuation_Status(party.player8.getSpirit())}+${transformation.Fluctuation_Status(party.player8.getKnowledge())}+${transformation.Fluctuation_Status(party.player8.getStamina())}+${transformation.Fluctuation_Status(party.player8.getEating())}"></span></option>
+						<option th:value="${party.player8.getId()}"><span
+								th:text="${party.player8.getName()} +'  '+ ${transformation.Job(party.player8.getJob())} +'  '+ ${transformation.jobskil(party.player8,party.player8.getJob())} +'    '+${party.player8.getHp()}+'/'+${transformation.H(party.player8)}+':'+${party.player8.getMp()}+'/'+${transformation.M(party.player8)}+':'+${party.player8.getFp()}+'/'+${transformation.F(party.player8)}+':'+${party.player8.getCp()}+'/'+${transformation.C(party.player8)}+':'+${transformation.Fluctuation_Status(party.player8.getMuscle())}+${transformation.Fluctuation_Status(party.player8.getQuick())}+${transformation.Fluctuation_Status(party.player8.getTechnique())}+${transformation.Fluctuation_Status(party.player8.getMagic())}+${transformation.Fluctuation_Status(party.player8.getSpirit())}+${transformation.Fluctuation_Status(party.player8.getKnowledge())}+${transformation.Fluctuation_Status(party.player8.getStamina())}+${transformation.Fluctuation_Status(party.player8.getEating())}"></span>
+						</option>
 					</div><br>
 					<option th:value="${null}">選択なし</option>
 					<div th:each="player :${playerPage}">
-						<option th:value="${player.getId()}"><span th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+ ${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span></option>
+						<option th:value="${player.getId()}"><span
+								th:text="${player.getName()}+'  '+${transformation.Job(player.getJob())}+'  '+${transformation.jobskil(player,player.getJob())}+'    '+${player.getHp()}+'/'+${transformation.H(player)}+':'+${player.getMp()}+'/'+${transformation.M(player)}+':'+${player.getFp()}+'/'+${transformation.F(player)}+':'+${player.getCp()}+'/'+${transformation.C(player)}+':'+ ${transformation.Fluctuation_Status(player.getMuscle())}+${transformation.Fluctuation_Status(player.getQuick())}+${transformation.Fluctuation_Status(player.getTechnique())}+${transformation.Fluctuation_Status(player.getMagic())}+${transformation.Fluctuation_Status(player.getSpirit())}+${transformation.Fluctuation_Status(player.getKnowledge())}+${transformation.Fluctuation_Status(player.getStamina())}+${transformation.Fluctuation_Status(player.getEating())}"></span>
+						</option>
 					</div><br>
 				</select><br>
 				<button type="submit">決定</button>
-			</form></div>
-			<br>
-			
-			<div class=center>
-				<button type="button" th:onclick="|location.href='__@{/game/home/organization/1}__'|" >冒険者</button>
-				<button type="button" th:onclick="|location.href='__@{/game/home/organization/2}__'|" >鍛冶師</button>
-				<button type="button" th:onclick="|location.href='__@{/game/home/organization/3}__'|" >矢師</button>
-				<button type="button" th:onclick="|location.href='__@{/game/home/organization/4}__'|" >刀鍛冶師</button>
-				<button type="button" th:onclick="|location.href='__@{/game/home/organization/5}__'|" >防具鍛冶師</button>
-				<button type="button" th:onclick="|location.href='__@{/game/home/organization/6}__'|" >杖職人</button>
-				<button type="button" th:onclick="|location.href='__@{/game/home/organization/7}__'|" >教授</button>
-				
-			</div>
+			</form>
 		</div>
-	</body>
+		<br>
+
+		<div class=center>
+			<button type="button" th:onclick="|location.href='__@{/game/home/organization/1}__'|">冒険者</button>
+			<button type="button" th:onclick="|location.href='__@{/game/home/organization/2}__'|">鍛冶師</button>
+			<button type="button" th:onclick="|location.href='__@{/game/home/organization/3}__'|">矢師</button>
+			<button type="button" th:onclick="|location.href='__@{/game/home/organization/4}__'|">刀鍛冶師</button>
+			<button type="button" th:onclick="|location.href='__@{/game/home/organization/5}__'|">防具鍛冶師</button>
+			<button type="button" th:onclick="|location.href='__@{/game/home/organization/6}__'|">杖職人</button>
+			<button type="button" th:onclick="|location.href='__@{/game/home/organization/7}__'|">教授</button>
+
+		</div>
+	</div>
+</body>
+
 </html>

@@ -1,62 +1,67 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<link th:href="@{/css/home.css}" rel="stylesheet">
-		<title>ゲーム：訓練</title>
-	</head>
-	<body>
-		<div class=k>
-			<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span th:text="${transformation.time(user_info.getTime())}"></p>
-			<div th:if="${successMessage}" class=center>
-				<span th:text="${successMessage}"></span>
-			</div>
-			<button type="button" th:onclick="|location.href='__@{/game/home}__'|" >ホームへ戻る</button>
-			<button type="button" th:onclick="|location.href='__@{/game/home/training}__'|" >成長・転職へ戻る</button> 
-			<button type="button" th:onclick="|location.href='__@{/game/home/training/${player.getId()}}__'|" >戦闘員詳細へ戻る</button>
 
-			<div class=divcenter>
-				<table class=center>
-					<thead>
-						<th>名前</th>
-						<th>職業</th>
-						<th>経験</th>
-						<th>HP</th>
-						<th>MP</th>
-						<th>FP</th>
-						<th>CP</th>
-						<th>筋力</th>
-						<th>俊敏</th>
-						<th>技術</th>
-						<th>魔術</th>
-						<th>精神</th>
-						<th>学力</th>
-						<th>体力</th>
-						<th>食力</th>
-						
-					</thead>
-					<tbody>
-						<td><span th:text="${player.getName()}"></span></td>
-						<td><span th:text="${transformation.Job(player.getJob())}"></span></td>
-						<td><span th:text="${transformation.jobskil(player,player.getJob())}"></span></td>
-						<td th:text="${player.getHp()}+'/'+${transformation.H(player)}"></td>
-						<td th:text="${player.getMp()}+'/'+${transformation.M(player)}"></td>
-						<td th:text="${player.getFp()}+'/'+${transformation.F(player)}"></td>
-						<td th:text="${player.getCp()}+'/'+${transformation.C(player)}"></td>
-						<td><span th:text="${transformation.Fluctuation_Status(player.getMuscle())}"></span></td>
-						<td><span th:text="${transformation.Fluctuation_Status(player.getQuick())}"></span></td>
-						<td><span th:text="${transformation.Fluctuation_Status(player.getTechnique())}"></span></td>
-						<td><span th:text="${transformation.Fluctuation_Status(player.getMagic())}"></span></td>
-						<td><span th:text="${transformation.Fluctuation_Status(player.getSpirit())}"></span></td>
-						<td><span th:text="${transformation.Fluctuation_Status(player.getKnowledge())}"></span></td>
-						<td><span th:text="${transformation.Fluctuation_Status(player.getStamina())}"></span></td>
-						<td><span th:text="${transformation.Fluctuation_Status(player.getEating())}"></span></td>
-						
-					</tbody>
-				</table>
-			</div>
-			<div class=divcenter>
-			<form method="post" th:action="@{/game/home/training/__${player.getId()}__/playertraininged}" th:object="${playertrainingform}">
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/home.css}" rel="stylesheet">
+	<title>ゲーム：訓練</title>
+</head>
+
+<body>
+	<div class=k>
+		<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span
+				th:text="${transformation.time(user_info.getTime())}"></p>
+		<div th:if="${successMessage}" class=center>
+			<span th:text="${successMessage}"></span>
+		</div>
+		<button type="button" th:onclick="|location.href='__@{/game/home}__'|">ホームへ戻る</button>
+		<button type="button" th:onclick="|location.href='__@{/game/home/training}__'|">成長・転職へ戻る</button>
+		<button type="button"
+			th:onclick="|location.href='__@{/game/home/training/${player.getId()}}__'|">戦闘員詳細へ戻る</button>
+
+		<div class=divcenter>
+			<table class=center>
+				<thead>
+					<th>名前</th>
+					<th>職業</th>
+					<th>経験</th>
+					<th>HP</th>
+					<th>MP</th>
+					<th>FP</th>
+					<th>CP</th>
+					<th>筋力</th>
+					<th>俊敏</th>
+					<th>技術</th>
+					<th>魔術</th>
+					<th>精神</th>
+					<th>学力</th>
+					<th>体力</th>
+					<th>食力</th>
+
+				</thead>
+				<tbody>
+					<td><span th:text="${player.getName()}"></span></td>
+					<td><span th:text="${transformation.Job(player.getJob())}"></span></td>
+					<td><span th:text="${transformation.jobskil(player,player.getJob())}"></span></td>
+					<td th:text="${player.getHp()}+'/'+${transformation.H(player)}"></td>
+					<td th:text="${player.getMp()}+'/'+${transformation.M(player)}"></td>
+					<td th:text="${player.getFp()}+'/'+${transformation.F(player)}"></td>
+					<td th:text="${player.getCp()}+'/'+${transformation.C(player)}"></td>
+					<td><span th:text="${transformation.Fluctuation_Status(player.getMuscle())}"></span></td>
+					<td><span th:text="${transformation.Fluctuation_Status(player.getQuick())}"></span></td>
+					<td><span th:text="${transformation.Fluctuation_Status(player.getTechnique())}"></span></td>
+					<td><span th:text="${transformation.Fluctuation_Status(player.getMagic())}"></span></td>
+					<td><span th:text="${transformation.Fluctuation_Status(player.getSpirit())}"></span></td>
+					<td><span th:text="${transformation.Fluctuation_Status(player.getKnowledge())}"></span></td>
+					<td><span th:text="${transformation.Fluctuation_Status(player.getStamina())}"></span></td>
+					<td><span th:text="${transformation.Fluctuation_Status(player.getEating())}"></span></td>
+
+				</tbody>
+			</table>
+		</div>
+		<div class=divcenter>
+			<form method="post" th:action="@{/game/home/training/__${player.getId()}__/playertraininged}"
+				th:object="${playertrainingform}">
 				<select name="training">
 					<option th:value="${1}">筋力</option>
 					<option th:value="2">俊敏</option>
@@ -66,11 +71,14 @@
 					<option th:value="6">学力</option>
 					<option th:value="7">体力</option>
 					<option th:value="8">食力</option>
-				</select></div>
-				<br>
-				<div class=divcenter>
-				<button type="submit">決定</button></div>
-			</form>
+				</select>
 		</div>
-	</body>
+		<br>
+		<div class=divcenter>
+			<button type="submit">決定</button>
+		</div>
+		</form>
+	</div>
+</body>
+
 </html>

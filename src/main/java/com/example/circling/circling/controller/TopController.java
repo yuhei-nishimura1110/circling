@@ -14,21 +14,25 @@ public class TopController {
 	private final ChattableRepository chattableRepository;
 	private final UserRepository userRepository;
 	private final BoardRepository boardRepository;
-	public TopController(ChatRepository chatRepository,ChattableRepository chattableRepository,
-			UserRepository userRepository,BoardRepository boardRepository) {
-		this.chatRepository =chatRepository;
-		this.chattableRepository =chattableRepository;
-		this.userRepository =userRepository;
-		this.boardRepository= boardRepository;
+
+	public TopController(ChatRepository chatRepository, ChattableRepository chattableRepository,
+			UserRepository userRepository, BoardRepository boardRepository) {
+		this.chatRepository = chatRepository;
+		this.chattableRepository = chattableRepository;
+		this.userRepository = userRepository;
+		this.boardRepository = boardRepository;
 	}
+
 	@GetMapping("/")
 	public String top() {
 		return "circling/top/top";
 	}
+
 	@GetMapping("/information")
 	public String information() {
 		return "circling/top/information";
 	}
+
 	@GetMapping("/portfolio")
 	public String portfolio() {
 		return "circling/top/portfolio";

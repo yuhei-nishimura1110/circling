@@ -1,103 +1,105 @@
 <!DOCTYPE html>
 <html>
-	<meta charset="UTF-8">
-	<link rel="icon" th:href="@{/storage/white.ico}">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
-	<link th:href="@{/css/style.css}" rel="stylesheet">
-	  <title>QRコード読み取りカメラ</title>
-	  <script src="./jsQR.js"></script>
-	</head>
-	<body>
-		<div class="wrapper">
-				<header>
-					<div class="displayflexcenter">
-						<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
-					</div>
-				</header>
-				
-				    <video id="video" autoplay muted playsinline></video>
-				    <canvas id="camera-canvas"></canvas>
-				    <canvas id="rect-canvas"></canvas>
-					<span id="qr-msg">QRコード: 見つかりません</span>
-				</div>
-				<script>
-					const video = document.getElementById('video');
-					let contentWidth;
-					let contentHeight;
+<meta charset="UTF-8">
+<link rel="icon" th:href="@{/storage/white.ico}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<title>QRコード読み取りカメラ</title>
+<script src="./jsQR.js"></script>
+</head>
 
-					const media = navigator.mediaDevices.getUserMedia({ audio: false, video: {width:640, height:480} })
-					   .then((stream) => {
-					      video.srcObject = stream;
-					      video.onloadeddata = () => {
-					         video.play();
-					         contentWidth = video.clientWidth;
-					         contentHeight = video.clientHeight;
-					         canvasUpdate(); // 次で記述
-					         checkImage(); // 次で記述
-					      }
-					   }).catch((e) => {
-					      console.log(e);
-					   });
-					   
-					   const cvs = document.getElementById('camera-canvas');
-					   const ctx = cvs.getContext('2d');
-					   const canvasUpdate = () => {
-					      cvs.width = contentWidth;
-					      cvs.height = contentHeight;
-					      ctx.drawImage(video, 0, 0, contentWidth, contentHeight);
-					      requestAnimationFrame(canvasUpdate);
-					   }
-					   
-					   const rectCvs = document.getElementById('rect-canvas');
-					   const rectCtx =  rectCvs.getContext('2d');
-					   const checkImage = () => {
-					      // imageDataを作る
-					      const imageData = ctx.getImageData(0, 0, contentWidth, contentHeight);
-					      // jsQRに渡す
-					      const code = jsQR(imageData.data, contentWidth, contentHeight);
+<body>
+	<div class="wrapper">
+		<header>
+			<div class="displayflexcenter">
+				<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
+			</div>
+		</header>
 
-					      // 検出結果に合わせて処理を実施
-					      if (code) {
-					         console.log("QRcodeが見つかりました", code);
-					         drawRect(code.location);
-							 document.getElementById('qr-msg').textContent = `QRコード：${code.data}`;
-					      } else {
-					         console.log("QRcodeが見つかりません…", code);
-					         rectCtx.clearRect(0, 0, contentWidth, contentHeight);
-							 document.getElementById('qr-msg').textContent = `QRコード: 見つかりません`;
-					      }
-					      setTimeout(()=>{ checkImage() }, 500);
-					   }
-					   
-					   // 四辺形の描画
-					   const drawRect = (location) => {
-					      rectCvs.width = contentWidth;
-					      rectCvs.height = contentHeight;
-					      drawLine(location.topLeftCorner, location.topRightCorner);
-					      drawLine(location.topRightCorner, location.bottomRightCorner);
-					      drawLine(location.bottomRightCorner, location.bottomLeftCorner);
-					      drawLine(location.bottomLeftCorner, location.topLeftCorner)
-					   }
+		<video id="video" autoplay muted playsinline></video>
+		<canvas id="camera-canvas"></canvas>
+		<canvas id="rect-canvas"></canvas>
+		<span id="qr-msg">QRコード: 見つかりません</span>
+	</div>
+	<script>
+		const video = document.getElementById('video');
+		let contentWidth;
+		let contentHeight;
 
-					   // 線の描画
-					   const drawLine = (begin, end) => {
-					      rectCtx.lineWidth = 4;
-					      rectCtx.strokeStyle = "#F00";
-					      rectCtx.beginPath();
-					      rectCtx.moveTo(begin.x, begin.y);
-					      rectCtx.lineTo(end.x, end.y);
-					      rectCtx.stroke();
-					   }
-					   
-				</script>
-	    <footer>
-	    	<a th:href="@{/home}"><img class="chaticon" th:src="@{/storage/home.jpg}" alt="home"></a>
-	    	<a th:href="@{/chat}"><img class="chaticon" th:src="@{/storage/chat.jpg}" alt="chat"></a>
-	    	<a th:href="@{/settings}"><img class="chaticon" th:src="@{/storage/settings.jpg}" alt="settings"></a>
-	    	<a th:href="@{/connect/qrcode}"><img class="chaticon" th:src="@{/storage/qrcode.jpg}"></a>
-	    	<a th:href="@{/connect/camera}"><img class="chaticon" th:src="@{/storage/caamera.jpg}"></a>
-	    </footer>
-	</body>
+		const media = navigator.mediaDevices.getUserMedia({ audio: false, video: { width: 640, height: 480 } })
+			.then((stream) => {
+				video.srcObject = stream;
+				video.onloadeddata = () => {
+					video.play();
+					contentWidth = video.clientWidth;
+					contentHeight = video.clientHeight;
+					canvasUpdate(); // 次で記述
+					checkImage(); // 次で記述
+				}
+			}).catch((e) => {
+				console.log(e);
+			});
+
+		const cvs = document.getElementById('camera-canvas');
+		const ctx = cvs.getContext('2d');
+		const canvasUpdate = () => {
+			cvs.width = contentWidth;
+			cvs.height = contentHeight;
+			ctx.drawImage(video, 0, 0, contentWidth, contentHeight);
+			requestAnimationFrame(canvasUpdate);
+		}
+
+		const rectCvs = document.getElementById('rect-canvas');
+		const rectCtx = rectCvs.getContext('2d');
+		const checkImage = () => {
+			// imageDataを作る
+			const imageData = ctx.getImageData(0, 0, contentWidth, contentHeight);
+			// jsQRに渡す
+			const code = jsQR(imageData.data, contentWidth, contentHeight);
+
+			// 検出結果に合わせて処理を実施
+			if (code) {
+				console.log("QRcodeが見つかりました", code);
+				drawRect(code.location);
+				document.getElementById('qr-msg').textContent = `QRコード：${code.data}`;
+			} else {
+				console.log("QRcodeが見つかりません…", code);
+				rectCtx.clearRect(0, 0, contentWidth, contentHeight);
+				document.getElementById('qr-msg').textContent = `QRコード: 見つかりません`;
+			}
+			setTimeout(() => { checkImage() }, 500);
+		}
+
+		// 四辺形の描画
+		const drawRect = (location) => {
+			rectCvs.width = contentWidth;
+			rectCvs.height = contentHeight;
+			drawLine(location.topLeftCorner, location.topRightCorner);
+			drawLine(location.topRightCorner, location.bottomRightCorner);
+			drawLine(location.bottomRightCorner, location.bottomLeftCorner);
+			drawLine(location.bottomLeftCorner, location.topLeftCorner)
+		}
+
+		// 線の描画
+		const drawLine = (begin, end) => {
+			rectCtx.lineWidth = 4;
+			rectCtx.strokeStyle = "#F00";
+			rectCtx.beginPath();
+			rectCtx.moveTo(begin.x, begin.y);
+			rectCtx.lineTo(end.x, end.y);
+			rectCtx.stroke();
+		}
+
+	</script>
+	<footer>
+		<a th:href="@{/home}"><img class="chaticon" th:src="@{/storage/home.jpg}" alt="home"></a>
+		<a th:href="@{/chat}"><img class="chaticon" th:src="@{/storage/chat.jpg}" alt="chat"></a>
+		<a th:href="@{/settings}"><img class="chaticon" th:src="@{/storage/settings.jpg}" alt="settings"></a>
+		<a th:href="@{/connect/qrcode}"><img class="chaticon" th:src="@{/storage/qrcode.jpg}"></a>
+		<a th:href="@{/connect/camera}"><img class="chaticon" th:src="@{/storage/caamera.jpg}"></a>
+	</footer>
+</body>
+
 </html>

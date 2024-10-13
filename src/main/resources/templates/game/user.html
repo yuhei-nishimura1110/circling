@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<link th:href="@{/css/home.css}" rel="stylesheet">
-		<title>ゲーム：会員情報</title>
-	</head>
-	<body>
-		<div class=k>
-			<button type="button" th:onclick="|location.href='__@{/game/home}__'|" >ホームに戻る</button>
-			<div th:if="${successMessage}" class=center>
-				<span th:text="${successMessage}"></span>
-			</div>
-			<div class=divcenter>
-				<table class=center>
-					<thead>
-						<th>氏名</th>
-						
-					</thead>
-					<tbody>
-						<td><span th:text="${user.getName()}"></span></td>
-					</tbody>
-				</table>
-			</div>
-			
-			</div>
-		
-	</body>
+
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/home.css}" rel="stylesheet">
+	<title>ゲーム：会員情報</title>
+</head>
+
+<body>
+	<div class=k>
+		<button type="button" th:onclick="|location.href='__@{/game/home}__'|">ホームに戻る</button>
+		<div th:if="${successMessage}" class=center>
+			<span th:text="${successMessage}"></span>
+		</div>
+		<div class=divcenter>
+			<table class=center>
+				<thead>
+					<th>氏名</th>
+
+				</thead>
+				<tbody>
+					<td><span th:text="${user.getName()}"></span></td>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+</body>
+
 </html>

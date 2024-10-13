@@ -44,7 +44,6 @@ public class HomesController {
 		return "game/user";
 	}
 
-
 	@GetMapping("/information")
 	public String information() {
 		return "game/information";

@@ -48,7 +48,7 @@ public class ChatController {
 		this.userRepository = userRepository;
 		this.boardRepository = boardRepository;
 		this.chatService = chatService;
-		this.connectService =connectService;
+		this.connectService = connectService;
 	}
 
 	@GetMapping("/chat/{id}")
@@ -76,11 +76,10 @@ public class ChatController {
 		model.addAttribute("chattableMap", chattableMap);
 		model.addAttribute("lastchatMap", lastchatMap);
 
-
 		List<Chat> chat = chatRepository.findByBoardOrderByIdAsc(board);
 		model.addAttribute("chat", chat);
-		if(chattable.getBoard().getName()==null) {
-			chattable=chattableRepository.findByBoardAndUserNot(board, user);
+		if (chattable.getBoard().getName() == null) {
+			chattable = chattableRepository.findByBoardAndUserNot(board, user);
 		}
 		model.addAttribute("chattable", chattable);
 		ChatForm chatForm = new ChatForm();
@@ -96,8 +95,8 @@ public class ChatController {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 		Board board = boardRepository.getReferenceById(id);
 		Chattable chattable = chattableRepository.findByBoardAndUser(board, user);
-		List<Chattable> chattabletime =chattableRepository.findByBoard(board);
-		for(Chattable i :chattabletime) {
+		List<Chattable> chattabletime = chattableRepository.findByBoard(board);
+		for (Chattable i : chattabletime) {
 			i.setDtime(LocalDateTime.now());
 		}
 		chattable.setTime(LocalDateTime.now());
@@ -126,7 +125,7 @@ public class ChatController {
 		model.addAttribute("chattable", chattable);
 		ChatForm chatForm = new ChatForm();
 		model.addAttribute("chatForm", chatForm);
-		
+
 		return "circling/chat/chat";
 	}
 
@@ -134,8 +133,8 @@ public class ChatController {
 	public String user(Model model, @PathVariable(name = "id") Integer id, @PathVariable(name = "table") Integer table,
 			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
 		User myuser = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		Board boards=boardRepository.getReferenceById(table);
-		model.addAttribute("boards",boards);
+		Board boards = boardRepository.getReferenceById(table);
+		model.addAttribute("boards", boards);
 		User youruser = userRepository.getReferenceById(id);
 		if (chattableRepository.findByBoardAndUser(boardRepository.getReferenceById(table), youruser) == null) {
 			return "redirect:/chat/{table}";
@@ -152,18 +151,20 @@ public class ChatController {
 		for (Board i : boardList) {
 			if (chattableRepository.findByBoardAndUser(i, youruser) != null) {
 				x = true;
-				model.addAttribute("board",i.getId());
+				model.addAttribute("board", i.getId());
 			}
 		}
-		model.addAttribute("x",x);
+		model.addAttribute("x", x);
 		return "circling/chat/user";
 	}
+
 	@PostMapping("/chat/{table}/user/{id}/ed")
-	public String usered(Model model, @PathVariable(name = "id") Integer id, @PathVariable(name = "table") Integer table,
+	public String usered(Model model, @PathVariable(name = "id") Integer id,
+			@PathVariable(name = "table") Integer table,
 			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
 		User myuser = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		Board boards=boardRepository.getReferenceById(table);
-		model.addAttribute("boards",boards);
+		Board boards = boardRepository.getReferenceById(table);
+		model.addAttribute("boards", boards);
 		User youruser = userRepository.getReferenceById(id);
 		model.addAttribute("youruser", youruser);
 		connectService.connect(myuser, youruser);
@@ -178,93 +179,96 @@ public class ChatController {
 		for (Board i : boardList) {
 			if (chattableRepository.findByBoardAndUser(i, youruser) != null) {
 				x = true;
-				model.addAttribute("board",i.getId());
+				model.addAttribute("board", i.getId());
 			}
 		}
-		model.addAttribute("x",x);
+		model.addAttribute("x", x);
 		return "circling/chat/user";
 	}
+
 	@GetMapping("/chat/{id}/list")
 	public String list(Model model, @PathVariable(name = "id") Integer id,
 			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		Board board =boardRepository.getReferenceById(id);
-		List<Chattable> chattableList=chattableRepository.findByBoard(board);
+		Board board = boardRepository.getReferenceById(id);
+		List<Chattable> chattableList = chattableRepository.findByBoard(board);
 		model.addAttribute("chattableList", chattableList);
-		model.addAttribute("user",user);
-		model.addAttribute("board",board);
+		model.addAttribute("user", user);
+		model.addAttribute("board", board);
 		return "chat/list";
 	}
+
 	@GetMapping("/chat/{id}/come")
-	public String come (Model model, @PathVariable(name = "id") Integer id,
+	public String come(Model model, @PathVariable(name = "id") Integer id,
 			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		Board board =boardRepository.getReferenceById(id);
-		model.addAttribute("board",board);
-		List<Chattable> chattableListboard=chattableRepository.findByBoard(board);
-		List<Chattable> chattableListfriend=chattableRepository.findByUserOrderByDtimeDesc(user);
-		List<Chattable> chattableListselect=new ArrayList<>();
-		boolean x= false;
-		for(Chattable i :chattableListfriend) {
-			if(i.getBoard().getName()==null) {
-				x= true;
-				for(Chattable k:chattableListboard) {
-					if(chattableRepository.findByBoardAndUserNot(i.getBoard(), user).getUser() == k.getUser()) {
-						x=false;
+		Board board = boardRepository.getReferenceById(id);
+		model.addAttribute("board", board);
+		List<Chattable> chattableListboard = chattableRepository.findByBoard(board);
+		List<Chattable> chattableListfriend = chattableRepository.findByUserOrderByDtimeDesc(user);
+		List<Chattable> chattableListselect = new ArrayList<>();
+		boolean x = false;
+		for (Chattable i : chattableListfriend) {
+			if (i.getBoard().getName() == null) {
+				x = true;
+				for (Chattable k : chattableListboard) {
+					if (chattableRepository.findByBoardAndUserNot(i.getBoard(), user).getUser() == k.getUser()) {
+						x = false;
 					}
 				}
-				if(x) {
+				if (x) {
 					chattableListselect.add(chattableRepository.findByBoardAndUserNot(i.getBoard(), user));
 				}
 			}
 		}
 		chattableListselect.size();
-		model.addAttribute("chattableListselect",chattableListselect);
-		model.addAttribute("comeForm",new ComeForm());
+		model.addAttribute("chattableListselect", chattableListselect);
+		model.addAttribute("comeForm", new ComeForm());
 		return "circling/chat/come";
 	}
-	
+
 	@PostMapping("/chat/{id}/come/ed")
-	public String come (@ModelAttribute @Validated ComeForm comeForm,Model model, @PathVariable(name = "id") Integer id,
+	public String come(@ModelAttribute @Validated ComeForm comeForm, Model model, @PathVariable(name = "id") Integer id,
 			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 		model.addAttribute("user", user);
-		Board board =boardRepository.getReferenceById(id);
-		model.addAttribute("board",board);
-		for(Integer i:comeForm.getMenber()) {
-		connectService.join(board, userRepository.getReferenceById(i));
+		Board board = boardRepository.getReferenceById(id);
+		model.addAttribute("board", board);
+		for (Integer i : comeForm.getMenber()) {
+			connectService.join(board, userRepository.getReferenceById(i));
 		}
-		List<Chattable> chattableList=chattableRepository.findByBoard(board);
+		List<Chattable> chattableList = chattableRepository.findByBoard(board);
 		model.addAttribute("chattableList", chattableList);
 		return "circling/chat/list";
 	}
-	
+
 	@GetMapping("/chat/{id}/settings")
-	public String settings (Model model, @PathVariable(name = "id") Integer id,
+	public String settings(Model model, @PathVariable(name = "id") Integer id,
 			@AuthenticationPrincipal UserDetailsImpl userDetailsImpl) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		Board board =boardRepository.getReferenceById(id);
+		Board board = boardRepository.getReferenceById(id);
 		model.addAttribute("board", board);
-		model.addAttribute("grupeNameEdit",new GrupeNameEdit(board.getName()));
+		model.addAttribute("grupeNameEdit", new GrupeNameEdit(board.getName()));
 		return "circling/chat/settings";
 	}
-	
+
 	@PostMapping("/chat/{id}/settings/ed")
-	public String settingsed(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,@ModelAttribute @Validated GrupeNameEdit grupeNameEdit, Model model, @PathVariable(name = "id") Integer id,
+	public String settingsed(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
+			@ModelAttribute @Validated GrupeNameEdit grupeNameEdit, Model model, @PathVariable(name = "id") Integer id,
 			BindingResult bindingResult) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 		model.addAttribute("user", user);
-		Board board =boardRepository.getReferenceById(id);
+		Board board = boardRepository.getReferenceById(id);
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("board",board);
+			model.addAttribute("board", board);
 			return "circling/chat/settings";
 		}
-		
+
 		board.setName(grupeNameEdit.getName());
 		boardRepository.save(board);
-		model.addAttribute("board",board);
-		
-		List<Chattable> chattableList=chattableRepository.findByBoard(board);
+		model.addAttribute("board", board);
+
+		List<Chattable> chattableList = chattableRepository.findByBoard(board);
 		model.addAttribute("chattableList", chattableList);
 		return "circling/chat/list";
 	}

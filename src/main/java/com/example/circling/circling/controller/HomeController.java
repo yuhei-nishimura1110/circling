@@ -35,14 +35,14 @@ public class HomeController {
 
 	public HomeController(ChatRepository chatRepository, ChattableRepository chattableRepository,
 			UserRepository userRepository, BoardRepository boardRepository, ChatService chatService,
-			UserService userService,PasswordEncoder passwordEncoder) {
+			UserService userService, PasswordEncoder passwordEncoder) {
 		this.chatRepository = chatRepository;
 		this.chattableRepository = chattableRepository;
 		this.userRepository = userRepository;
 		this.boardRepository = boardRepository;
 		this.chatService = chatService;
 		this.userService = userService;
-		this.passwordEncoder =passwordEncoder;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@GetMapping("/home")
@@ -68,7 +68,6 @@ public class HomeController {
 		return "circling/home/name";
 	}
 
-
 	@GetMapping("/settings/email")
 	public String settingsemail(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			Model model) {
@@ -83,7 +82,7 @@ public class HomeController {
 	public String settingspassword(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			Model model) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		model.addAttribute("user",user);
+		model.addAttribute("user", user);
 		UserEditPasswordForm userEditPasswordForm = new UserEditPasswordForm(null, null, null);
 		model.addAttribute("userEditPasswordForm", userEditPasswordForm);
 		return "circling/home/password";
@@ -92,7 +91,7 @@ public class HomeController {
 	@PostMapping("/settings/name")
 	public String settingsnames(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			@ModelAttribute @Validated UserEditNameForm userEditNameForm,
-			BindingResult bindingResult,Model model) {
+			BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 			model.addAttribute("user", user);
@@ -108,36 +107,38 @@ public class HomeController {
 	@PostMapping("/settings/email")
 	public String settingsemails(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			@ModelAttribute @Validated UserEditEmailForm userEditEmailForm,
-			BindingResult bindingResult,Model model) {
+			BindingResult bindingResult, Model model) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		if(user.getEmail().equals(userEditEmailForm.getEmail())) {
-			
-		}else {
-		if (userService.isEmailRegistered(userEditEmailForm.getEmail())) {
-			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "すでに登録済みのメールアドレスです。");
-			bindingResult.addError(fieldError);
+		if (user.getEmail().equals(userEditEmailForm.getEmail())) {
+
+		} else {
+			if (userService.isEmailRegistered(userEditEmailForm.getEmail())) {
+				FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "すでに登録済みのメールアドレスです。");
+				bindingResult.addError(fieldError);
+			}
+			if (bindingResult.hasErrors()) {
+				model.addAttribute("user", user);
+				return "circling/home/email";
+			}
 		}
-		if (bindingResult.hasErrors()) {
-			model.addAttribute("user", user);
-			return "circling/home/email";
-		}}
 		user.setEmail(userEditEmailForm.getEmail());
 		userRepository.save(user);
 		model.addAttribute("user", user);
 		return "circling/home/settings";
 	}
-	
 
 	@PostMapping("/settings/password")
 	public String settingspasswords(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			@ModelAttribute @Validated UserEditPasswordForm userEditPasswordForm,
-			BindingResult bindingResult,Model model) {
+			BindingResult bindingResult, Model model) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		if(passwordEncoder.matches(passwordEncoder.encode(userEditPasswordForm.getNowpassword()),user.getPassword())) {
+		if (passwordEncoder.matches(passwordEncoder.encode(userEditPasswordForm.getNowpassword()),
+				user.getPassword())) {
 			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "nowpassword", "現在のパスワードが一致しません。");
 			bindingResult.addError(fieldError);
 		}
-		if (!userService.isSamePassword(userEditPasswordForm.getPassword(), userEditPasswordForm.getPasswordConfirmation())) {
+		if (!userService.isSamePassword(userEditPasswordForm.getPassword(),
+				userEditPasswordForm.getPasswordConfirmation())) {
 			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "確認用のパスワードと一致しません。");
 			bindingResult.addError(fieldError);
 		}

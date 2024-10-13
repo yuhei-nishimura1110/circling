@@ -14,10 +14,10 @@ import lombok.Data;
 @Table(name = "family_name")
 public class Family_name {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
-	
+
 	@Column(name = "name")
 	private String name;
 }

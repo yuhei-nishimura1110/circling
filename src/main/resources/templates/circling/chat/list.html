@@ -24,8 +24,8 @@
 		<main>
 			<a th:href="@{/chat/__${board.getId()}__}" class="indentcome">戻る</a>
 			<div class="list">
-			<a th:href="@{/chat/__${board.getId()}__/come}">招待</a>
-			<a th:href="@{/chat/__${board.getId()}__/settings}">設定</a>
+				<a th:href="@{/chat/__${board.getId()}__/come}">招待</a>
+				<a th:href="@{/chat/__${board.getId()}__/settings}">設定</a>
 			</div>
 			<h1 class="top-1"><span th:text="${board.getName()}"></span><span>のメンバー</span></h1>
 			<table align=center>

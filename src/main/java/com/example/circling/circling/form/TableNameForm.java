@@ -10,5 +10,5 @@ import lombok.Data;
 public class TableNameForm {
 	@NotBlank(message = "名前を入力してください。")
 	private String name;
-	private List<Integer> number; 
+	private List<Integer> number;
 }

@@ -23,21 +23,23 @@
 		</header>
 		<main>
 			<div class="createindent">
-			<form method=post th:action="@{/chat/grope/create}" th:object="${tableNameForm}">
-				<label for="name">新しいチャットグループの名前</label><br>
-				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-				<div class="createindent">
-				<input type="text" th:field="*{name}" autocomplete="off">
-				</div>
+				<form method=post th:action="@{/chat/grope/create}" th:object="${tableNameForm}">
+					<label for="name">新しいチャットグループの名前</label><br>
+					<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+					<div class="createindent">
+						<input type="text" th:field="*{name}" autocomplete="off">
+					</div>
 
-				<div th:each="chattableList : ${chattableList}">
+					<div th:each="chattableList : ${chattableList}">
 
-					<input type="checkbox" th:value="${chattableList.getUser().getId()}" name="number">
-					<label th:text="${chattableList.getUser().getName()}"></label>
-				</div>
-				<div class="createindent">
-				<button type="submit">決定</button></div>
-			</form></div>
+						<input type="checkbox" th:value="${chattableList.getUser().getId()}" name="number">
+						<label th:text="${chattableList.getUser().getName()}"></label>
+					</div>
+					<div class="createindent">
+						<button type="submit">決定</button>
+					</div>
+				</form>
+			</div>
 		</main>
 	</div>
 	<footer class="footerchat">

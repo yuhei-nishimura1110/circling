@@ -14,21 +14,21 @@
 
 <body>
 	<div class="wrapper">
-	<header>
-		<div class="displayflexcenter">
-			<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
+		<header>
+			<div class="displayflexcenter">
+				<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
 
-			<div class="loginsignup">
-				<form th:action="@{/logout}" method="post"><button type="submit" class="logoutbutton"><img class="login"
-							th:src="@{/storage/logout.jpg}" alt="ログアウト"></button></form>
+				<div class="loginsignup">
+					<form th:action="@{/logout}" method="post"><button type="submit" class="logoutbutton"><img
+								class="login" th:src="@{/storage/logout.jpg}" alt="ログアウト"></button></form>
+
+				</div>
 
 			</div>
-
-		</div>
-	</header>
-	<main>
-		<h1 class="top-1">ホーム</h1>
-	</main>
+		</header>
+		<main>
+			<h1 class="top-1">ホーム</h1>
+		</main>
 	</div>
 	<footer>
 		<a th:href="@{/home}"><img class="chaticon" th:src="@{/storage/home.jpg}" alt="home"></a>

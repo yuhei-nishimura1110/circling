@@ -1,73 +1,92 @@
 @charset "UTF-8";
-h1{
-	font-size:6vmax;
-	text-align:center;
-}
-h3{
-	font-size:4vmax;
-}
-p{
-	font-size:1vmax;
-}
-span{
-	font-size:1vmax;
-}
-td{
-	font-size:1vmax;
-}
-a{
-	font-size:2vmax;
-	text-align:center;
-}
-.d{
-	font-size:4vmax;	
-	text-align:center;
-}
-.a{
-	padding:2.5vmax;
-	background-color: yellow;
-}
-.center{
+
+h1 {
+	font-size: 6vmax;
 	text-align: center;
 }
-table{
-	margin:auto;
-	display:block;
+
+h3 {
+	font-size: 4vmax;
 }
-.divcenter{
-	display:flex;
+
+p {
+	font-size: 1vmax;
+}
+
+span {
+	font-size: 1vmax;
+}
+
+td {
+	font-size: 1vmax;
+}
+
+a {
+	font-size: 2vmax;
+	text-align: center;
+}
+
+.d {
+	font-size: 4vmax;
+	text-align: center;
+}
+
+.a {
+	padding: 2.5vmax;
+	background-color: yellow;
+}
+
+.center {
+	text-align: center;
+}
+
+table {
+	margin: auto;
+	display: block;
+}
+
+.divcenter {
+	display: flex;
 	justify-content: center;
 }
-.flex{
-	display:flex;
+
+.flex {
+	display: flex;
 }
-.border{
+
+.border {
 	border: 2px solid #000000;
 	text-align: center;
 }
-.borders{
-	border:2px solid #000000;
-	text-align:center;
-	padding:0.5vmax;
-}
-.indent{
-	text-indent:1vmax;
-}
-option{
-	font-size:1vmax;
-}
-select{
-	font-size:1vmax;
-}
-button{
-	font-size:2vmax;
-}
-input{
-	font-size:1vmax;
+
+.borders {
+	border: 2px solid #000000;
+	text-align: center;
+	padding: 0.5vmax;
 }
 
-.pagenationa{
-	font-size:2vmax;
+.indent {
+	text-indent: 1vmax;
+}
+
+option {
+	font-size: 1vmax;
+}
+
+select {
+	font-size: 1vmax;
+}
+
+button {
+	font-size: 2vmax;
+}
+
+input {
+	font-size: 1vmax;
+}
+
+.pagenationa {
+	font-size: 2vmax;
 }
 
 html {
@@ -75,35 +94,40 @@ html {
 	height: 100vh;
 	overflow: hidden auto;
 }
+
 body {
 	width: 100vw;
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
 }
-.k{
-	width:100vw;
+
+.k {
+	width: 100vw;
 	height: 100vh;
 	overflow: auto;
-	
-		
+
+
 }
-button{
-	font-size:2vmax;
+
+button {
+	font-size: 2vmax;
 }
-.button{
-	font-size:2vmax;
+
+.button {
+	font-size: 2vmax;
 }
-.btn{
-	font-size:1vmax;
+
+.btn {
+	font-size: 1vmax;
 }
 
 @media screen and (orientation:portrait) {
 	.k {
-			width: 100vh;
-			height: 100vw;
-			margin: -100vw 0 100vh;
-			transform: rotate(90deg);
-			transform-origin: left bottom;
-		}
+		width: 100vh;
+		height: 100vw;
+		margin: -100vw 0 100vh;
+		transform: rotate(90deg);
+		transform-origin: left bottom;
 	}
+}

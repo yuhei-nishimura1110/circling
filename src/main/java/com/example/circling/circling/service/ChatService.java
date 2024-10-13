@@ -20,16 +20,18 @@ public class ChatService {
 	private final ChattableRepository chattableRepository;
 	private final UserRepository userRepository;
 	private final BoardRepository boardRepository;
-	public ChatService(ChatRepository chatRepository,ChattableRepository chattableRepository,
-			UserRepository userRepository,BoardRepository boardRepository) {
-		this.chatRepository =chatRepository;
-		this.chattableRepository =chattableRepository;
-		this.userRepository =userRepository;
-		this.boardRepository= boardRepository;
+
+	public ChatService(ChatRepository chatRepository, ChattableRepository chattableRepository,
+			UserRepository userRepository, BoardRepository boardRepository) {
+		this.chatRepository = chatRepository;
+		this.chattableRepository = chattableRepository;
+		this.userRepository = userRepository;
+		this.boardRepository = boardRepository;
 	}
+
 	@Transactional
-	public void Create(ChatForm chatForm,User user,Board board) {
-		Chat chat =new Chat();
+	public void Create(ChatForm chatForm, User user, Board board) {
+		Chat chat = new Chat();
 		chat.setUser(user);
 		chat.setBoard(board);
 		chat.setChat(chatForm.getChat());
@@ -37,6 +39,6 @@ public class ChatService {
 		board.setTime(LocalDateTime.now());
 		chatRepository.save(chat);
 		boardRepository.save(board);
-		
+
 	}
 }

@@ -1,6 +1,5 @@
 package com.example.circling.circling.controller;
 
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -35,74 +34,77 @@ public class ChattableController {
 	private final UserRepository userRepository;
 	private final BoardRepository boardRepository;
 	private final ConnectService connectService;
-	public ChattableController(ChatRepository chatRepository,ChattableRepository chattableRepository,
-			UserRepository userRepository,BoardRepository boardRepository, ConnectService connectService) {
-		this.chatRepository =chatRepository;
-		this.chattableRepository =chattableRepository;
-		this.userRepository =userRepository;
-		this.boardRepository= boardRepository;
-		this.connectService =connectService;
+
+	public ChattableController(ChatRepository chatRepository, ChattableRepository chattableRepository,
+			UserRepository userRepository, BoardRepository boardRepository, ConnectService connectService) {
+		this.chatRepository = chatRepository;
+		this.chattableRepository = chattableRepository;
+		this.userRepository = userRepository;
+		this.boardRepository = boardRepository;
+		this.connectService = connectService;
 	}
-	
+
 	@GetMapping("/chat")
 	public String chat(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			Model model) {
-		User user=userRepository.getReferenceById(userDetailsImpl.getUser().getId());
+		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 		List<Chattable> chattableList = chattableRepository.findByUserOrderByDtimeDesc(user);
-		Map<Board,String> chattableMap=new LinkedHashMap<>();
-		Map<Board,Chat> lastchatMap=new LinkedHashMap<>();
-		for(Chattable i :chattableList) {
-			if(i.getBoard().getName()==null) {
-				chattableMap.put(i.getBoard(), chattableRepository.findByBoardAndUserNot(i.getBoard(), user).getUser().getName());
-			}else {
+		Map<Board, String> chattableMap = new LinkedHashMap<>();
+		Map<Board, Chat> lastchatMap = new LinkedHashMap<>();
+		for (Chattable i : chattableList) {
+			if (i.getBoard().getName() == null) {
+				chattableMap.put(i.getBoard(),
+						chattableRepository.findByBoardAndUserNot(i.getBoard(), user).getUser().getName());
+			} else {
 				chattableMap.put(i.getBoard(), i.getBoard().getName());
 			}
 			lastchatMap.put(i.getBoard(), chatRepository.findTopByBoardOrderByIdAsc(i.getBoard()));
 		}
 		model.addAttribute("chattableList", chattableList);
-		model.addAttribute("chattableMap",chattableMap);
+		model.addAttribute("chattableMap", chattableMap);
 		model.addAttribute("lastchatMap", lastchatMap);
-		return"circling/chattable/chattable";
+		return "circling/chattable/chattable";
 	}
-	
+
 	@GetMapping("/chat/grope/create")
 	public String gropecreate(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			Model model) {
-		User user=userRepository.getReferenceById(userDetailsImpl.getUser().getId());
-		model.addAttribute("tableNameForm" ,new TableNameForm());
-		List<Chattable> chattable=chattableRepository.findByUserOrderByDtimeDesc(user);
-		List<Chattable> chattableList=new ArrayList<>();
-		for(Chattable i :chattable) {
-			if(i.getBoard().getName()==null) {
+		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
+		model.addAttribute("tableNameForm", new TableNameForm());
+		List<Chattable> chattable = chattableRepository.findByUserOrderByDtimeDesc(user);
+		List<Chattable> chattableList = new ArrayList<>();
+		for (Chattable i : chattable) {
+			if (i.getBoard().getName() == null) {
 				chattableList.add(chattableRepository.findByBoardAndUserNot(i.getBoard(), user));
 			}
 		}
-		model.addAttribute("chattableList",chattableList);
-		return"circling/chattable/gropecreate";
+		model.addAttribute("chattableList", chattableList);
+		return "circling/chattable/gropecreate";
 	}
+
 	@PostMapping("/chat/grope/create")
 	public String gropecreated(@ModelAttribute @Validated TableNameForm tableNameForm,
-			BindingResult bindingResult,@AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
+			BindingResult bindingResult, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl,
 			Model model) {
-		User user=userRepository.getReferenceById(userDetailsImpl.getUser().getId());
+		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
 		if (bindingResult.hasErrors()) {
-			List<Chattable> chattable=chattableRepository.findByUserOrderByDtimeDesc(user);
-			List<Chattable> chattableList=new ArrayList<>();
-			for(Chattable i :chattable) {
-				if(i.getBoard().getName()==null) {
+			List<Chattable> chattable = chattableRepository.findByUserOrderByDtimeDesc(user);
+			List<Chattable> chattableList = new ArrayList<>();
+			for (Chattable i : chattable) {
+				if (i.getBoard().getName() == null) {
 					chattableList.add(chattableRepository.findByBoardAndUserNot(i.getBoard(), user));
 				}
 			}
-			model.addAttribute("chattableList",chattableList);
+			model.addAttribute("chattableList", chattableList);
 			return "circling/chattable/gropecreate";
 		}
-		
-		Board board=new Board();
+
+		Board board = new Board();
 		board.setName(tableNameForm.getName());
 		board.setTime(LocalDateTime.now());
 		boardRepository.save(board);
 		connectService.join(board, user);
-		for(Integer i:tableNameForm.getNumber()) {
+		for (Integer i : tableNameForm.getNumber()) {
 			connectService.join(board, userRepository.getReferenceById(i));
 		}
 		return "redirect:/chat";

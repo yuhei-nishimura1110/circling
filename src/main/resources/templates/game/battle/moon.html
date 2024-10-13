@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<link th:href="@{/css/home.css}" rel="stylesheet">
-		<title>ゲーム：月</title>
-	</head>
-	<body>
-		<div class=k>
-			<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span th:text="${transformation.time(user_info.getTime())}"></p>
-			<button type="button" th:onclick="|location.href='__@{/game/home}__'|" >ホームに戻る</button>
-			<button type="button" th:onclick="|location.href='__@{/game/home/battle/menu}__'|" >一覧に戻る</button>
-			<div class=center>
-				<p>☆注意文☆<br>マドリードの8・9階層に出てくるドラゴンが3体にドラゴンより強い魔王がいます。<br>十分注意してお進みください。<br>なお、月に行くために相当なお金がかかります。</p>
-				<button type="button" th:onclick="|location.href='__@{/game/home/battle/100}__'|" >月へ行く</button>
-			</div>
+
+<head>
+	<meta charset="UTF-8">
+	<link th:href="@{/css/home.css}" rel="stylesheet">
+	<title>ゲーム：月</title>
+</head>
+
+<body>
+	<div class=k>
+		<p>お金：<span th:text="${user_info.getMoney()}"></span>　　　時間：<span
+				th:text="${transformation.time(user_info.getTime())}"></p>
+		<button type="button" th:onclick="|location.href='__@{/game/home}__'|">ホームに戻る</button>
+		<button type="button" th:onclick="|location.href='__@{/game/home/battle/menu}__'|">一覧に戻る</button>
+		<div class=center>
+			<p>☆注意文☆<br>マドリードの8・9階層に出てくるドラゴンが3体にドラゴンより強い魔王がいます。<br>十分注意してお進みください。<br>なお、月に行くために相当なお金がかかります。</p>
+			<button type="button" th:onclick="|location.href='__@{/game/home/battle/100}__'|">月へ行く</button>
 		</div>
-	</body>
+	</div>
+</body>
+
 </html>

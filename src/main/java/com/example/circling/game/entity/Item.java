@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 import com.example.circling.circling.entity.User;
 
 import lombok.Data;
+
 @Data
 @Entity
 @Table(name = "item")

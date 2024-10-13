@@ -28,71 +28,78 @@ public class AuthController {
 	private final SignupEventPublisher signupEventPublisher;
 	private final VerificationTokenService verificationTokenService;
 	private final ConnectService connectService;
-	public AuthController(UserService userService,SignupEventPublisher signupEventPublisher,
-			VerificationTokenService verificationTokenService,ConnectService connectService) {        
+
+	public AuthController(UserService userService, SignupEventPublisher signupEventPublisher,
+			VerificationTokenService verificationTokenService, ConnectService connectService) {
 		this.userService = userService;
-		this.signupEventPublisher =signupEventPublisher;
-		this.verificationTokenService =verificationTokenService;
-		this.connectService =connectService;
-    }
+		this.signupEventPublisher = signupEventPublisher;
+		this.verificationTokenService = verificationTokenService;
+		this.connectService = connectService;
+	}
+
 	@GetMapping("/login")
-    public String login() {        
-        return "circling/auth/login";
-    }
-	
+	public String login() {
+		return "circling/auth/login";
+	}
+
 	@GetMapping("/signup/{id}")
-	 public String signup(@PathVariable(name = "id") String id,Model model) {        
-        model.addAttribute("signupForm", new SignupForm());
-        model.addAttribute("id",id);
-        return "circling/auth/signup";
-    }   
-	 @PostMapping("/signup/{id}")
-     public String signup(@PathVariable(name = "id") String id,
-    		 @ModelAttribute @Validated SignupForm signupForm, 
-    		 BindingResult bindingResult, RedirectAttributes redirectAttributes, 
-    		 HttpServletRequest httpServletRequest) {      
-         // メールアドレスが登録済みであれば、BindingResultオブジェクトにエラー内容を追加する
-         if (userService.isEmailRegistered(signupForm.getEmail())) {
-             FieldError fieldError = new FieldError(bindingResult.getObjectName(), "email", "すでに登録済みのメールアドレスです。");
-             bindingResult.addError(fieldError);                       
-         }    
-         
-         // パスワードとパスワード（確認用）の入力値が一致しなければ、BindingResultオブジェクトにエラー内容を追加する
-         if (!userService.isSamePassword(signupForm.getPassword(), signupForm.getPasswordConfirmation())) {
-             FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "パスワードが一致しません。");
-             bindingResult.addError(fieldError);
-         }        
-         
-         if (bindingResult.hasErrors()) {
-             return "circling/auth/signup";
-         }
-         
-         User createdUser =userService.create(signupForm,id);
-         String requestUrl = new String(httpServletRequest.getRequestURL());
-         signupEventPublisher.publishSignupEvent(createdUser, requestUrl);
-         redirectAttributes.addFlashAttribute("successMessage", "ご入力いただいたメールアドレスに認証メールを送信しました。メールに記載されているリンクをクリックし、会員登録を完了してください。");
-         connectService.signup(createdUser);
-         return "redirect:/";
-     }
-	 @GetMapping("/signup/{id}/verify")
-     public String verify(@PathVariable(name = "id") String id,@RequestParam(name = "token") String token, Model model) {
-         VerificationToken verificationToken = verificationTokenService.getVerificationToken(token);
-         System.out.println("aaa");
-         if (verificationToken != null) {
-             User user = verificationToken.getUser();  
-             userService.enableUser(user);
-             System.out.println("bbb");
-             String successMessage = "会員登録が完了しました。";
-             model.addAttribute("successMessage", successMessage);            
-         } else {
-             String errorMessage = "トークンが無効です。";
-             model.addAttribute("errorMessage", errorMessage);
-         }
-         
-         return "circling/auth/verify";         
-     }
-	 @GetMapping("/logout")
-	 public String logout() {
-		 return "circling/top/top";
-	 }
+	public String signup(@PathVariable(name = "id") String id, Model model) {
+		model.addAttribute("signupForm", new SignupForm());
+		model.addAttribute("id", id);
+		return "circling/auth/signup";
+	}
+
+	@PostMapping("/signup/{id}")
+	public String signup(@PathVariable(name = "id") String id,
+			@ModelAttribute @Validated SignupForm signupForm,
+			BindingResult bindingResult, RedirectAttributes redirectAttributes,
+			HttpServletRequest httpServletRequest) {
+		// メールアドレスが登録済みであれば、BindingResultオブジェクトにエラー内容を追加する
+		if (userService.isEmailRegistered(signupForm.getEmail())) {
+			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "email", "すでに登録済みのメールアドレスです。");
+			bindingResult.addError(fieldError);
+		}
+
+		// パスワードとパスワード（確認用）の入力値が一致しなければ、BindingResultオブジェクトにエラー内容を追加する
+		if (!userService.isSamePassword(signupForm.getPassword(), signupForm.getPasswordConfirmation())) {
+			FieldError fieldError = new FieldError(bindingResult.getObjectName(), "password", "パスワードが一致しません。");
+			bindingResult.addError(fieldError);
+		}
+
+		if (bindingResult.hasErrors()) {
+			return "circling/auth/signup";
+		}
+
+		User createdUser = userService.create(signupForm, id);
+		String requestUrl = new String(httpServletRequest.getRequestURL());
+		signupEventPublisher.publishSignupEvent(createdUser, requestUrl);
+		redirectAttributes.addFlashAttribute("successMessage",
+				"ご入力いただいたメールアドレスに認証メールを送信しました。メールに記載されているリンクをクリックし、会員登録を完了してください。");
+		connectService.signup(createdUser);
+		return "redirect:/";
+	}
+
+	@GetMapping("/signup/{id}/verify")
+	public String verify(@PathVariable(name = "id") String id, @RequestParam(name = "token") String token,
+			Model model) {
+		VerificationToken verificationToken = verificationTokenService.getVerificationToken(token);
+		System.out.println("aaa");
+		if (verificationToken != null) {
+			User user = verificationToken.getUser();
+			userService.enableUser(user);
+			System.out.println("bbb");
+			String successMessage = "会員登録が完了しました。";
+			model.addAttribute("successMessage", successMessage);
+		} else {
+			String errorMessage = "トークンが無効です。";
+			model.addAttribute("errorMessage", errorMessage);
+		}
+
+		return "circling/auth/verify";
+	}
+
+	@GetMapping("/logout")
+	public String logout() {
+		return "circling/top/top";
+	}
 }

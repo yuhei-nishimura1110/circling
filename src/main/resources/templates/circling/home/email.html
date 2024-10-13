@@ -16,57 +16,57 @@
 
 	<body>
 		<div class="wrapper">
-		<header>
-			<div class="displayflexcenter">
-				<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
+			<header>
+				<div class="displayflexcenter">
+					<a th:href="@{/}"><img class="logo" th:src="@{/storage/longrogo.jpg}" alt="CirClIng"></a>
 
-				<div class="loginsignup">
+					<div class="loginsignup">
 
-					<form th:action="@{/logout}" method="post"><button type="submit" class="logoutbutton"><img
-								class="login" th:src="@{/storage/logout.jpg}" alt="ログアウト"></button></form>
+						<form th:action="@{/logout}" method="post"><button type="submit" class="logoutbutton"><img
+									class="login" th:src="@{/storage/logout.jpg}" alt="ログアウト"></button></form>
+
+					</div>
 
 				</div>
+			</header>
+			<main>
+				<h1 class="top-1">設定</h1>
 
-			</div>
-		</header>
-		<main>
-			<h1 class="top-1">設定</h1>
-
-			<div class="top-1">
-				<table align="center">
-					<tbody>
-						<th>
-							<h4>名前</h4>
-						</th>
-						<td>
-							<span th:text="${user.getName()}"></span>
-							<a th:href="@{/settings/name}">編集</a>
-						</td>
-					</tbody>
-					<tbody>
-						<th>
-							<h4>email</h4>
-						</th>
-						<form method="post" th:action="@{/settings/email}" th:object="${userEditEmailForm}">
-							<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+				<div class="top-1">
+					<table align="center">
+						<tbody>
+							<th>
+								<h4>名前</h4>
+							</th>
 							<td>
-								<input type="text" th:field="*{email}" autocomplete="email"><button
-									type="submit">変更</button>
+								<span th:text="${user.getName()}"></span>
+								<a th:href="@{/settings/name}">編集</a>
 							</td>
-						</form>
-					</tbody>
-					<tbody>
-						<th>
-							<h4>パスワード</h4>
-						</th>
-						<td>
-							<span>････････････</span>
-							<a th:href="@{/settings/password}">編集</a>
-						</td>
-					</tbody>
-				</table>
-			</div>
-		</main>
+						</tbody>
+						<tbody>
+							<th>
+								<h4>email</h4>
+							</th>
+							<form method="post" th:action="@{/settings/email}" th:object="${userEditEmailForm}">
+								<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+								<td>
+									<input type="text" th:field="*{email}" autocomplete="email"><button
+										type="submit">変更</button>
+								</td>
+							</form>
+						</tbody>
+						<tbody>
+							<th>
+								<h4>パスワード</h4>
+							</th>
+							<td>
+								<span>････････････</span>
+								<a th:href="@{/settings/password}">編集</a>
+							</td>
+						</tbody>
+					</table>
+				</div>
+			</main>
 		</div>
 		<footer>
 			<a th:href="@{/home}"><img class="chaticon" th:src="@{/storage/home.jpg}" alt="home"></a>

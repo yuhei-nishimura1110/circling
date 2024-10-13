@@ -21,18 +21,18 @@ public class Chat {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="board_id")
+	@JoinColumn(name = "board_id")
 	private Board board;
-	
+
 	@ManyToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
-	
-	@Column(name="chat")
+
+	@Column(name = "chat")
 	private String chat;
-	
-	@Column(name="time")
+
+	@Column(name = "time")
 	private LocalDateTime time;
 }
