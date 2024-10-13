@@ -24,7 +24,7 @@ public class HomesController {
 		this.user_infoRepository = user_infoRepository;
 	}
 
-	@GetMapping()
+	@GetMapping
 	public String home(@AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model,
 			Transformation transformation) {
 		User user = userRepository.getReferenceById(userDetailsImpl.getUser().getId());
