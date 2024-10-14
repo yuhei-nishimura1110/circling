@@ -16,6 +16,7 @@ public class UserDetailsImpl implements UserDetails {
 		this.authorities = authorities;
 	}
 
+	
 	public User getUser() {
 		return user;
 	}
