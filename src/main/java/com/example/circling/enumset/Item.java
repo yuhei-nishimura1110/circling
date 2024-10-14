@@ -1,4 +1,4 @@
-package com.example.circling.game.enumset;
+package com.example.circling.enumset;
 
 public enum Item {
 	SWORD(1, "剣"), SPEAR(2, "槍"), ARCH(3, "弓"), KATANA(4, "刀"), AX(5, "斧"), MELLET(6, "槌"), CLUB(7, "棍棒"), CANE(8,

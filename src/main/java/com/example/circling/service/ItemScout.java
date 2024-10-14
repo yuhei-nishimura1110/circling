@@ -1,10 +1,9 @@
-package com.example.circling.game.scout;
+package com.example.circling.service;
 
 import org.springframework.stereotype.Service;
 
 import com.example.circling.entity.Party;
 import com.example.circling.entity.Player;
-import com.example.circling.game.service.Transformation;
 
 @Service
 public class ItemScout {

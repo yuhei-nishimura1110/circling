@@ -1,4 +1,4 @@
-package com.example.circling.game.form;
+package com.example.circling.form;
 
 import com.example.circling.entity.Family_name;
 import com.example.circling.repository.Family_nameRepository;

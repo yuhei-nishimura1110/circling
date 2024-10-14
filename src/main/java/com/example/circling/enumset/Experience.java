@@ -1,4 +1,4 @@
-package com.example.circling.game.enumset;
+package com.example.circling.enumset;
 
 public enum Experience {
 	FRESH(1, "新人"), TRAINED(2, "未熟"), REGULAR(3, "一般"), SEASONED(4, "練達"), VETERANS(5, "歴戦");

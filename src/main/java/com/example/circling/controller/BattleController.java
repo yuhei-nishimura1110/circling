@@ -1,4 +1,4 @@
-package com.example.circling.game.controller;
+package com.example.circling.controller;
 
 import java.util.ArrayList;
 
@@ -20,15 +20,15 @@ import com.example.circling.entity.Party;
 import com.example.circling.entity.Player;
 import com.example.circling.entity.User;
 import com.example.circling.entity.User_info;
-import com.example.circling.game.battle.Main_battle;
-import com.example.circling.game.form.BattleForm;
-import com.example.circling.game.service.Transformation;
+import com.example.circling.form.BattleForm;
 import com.example.circling.repository.ItemRepository;
 import com.example.circling.repository.PartyRepository;
 import com.example.circling.repository.PlayerRepository;
 import com.example.circling.repository.UserRepository;
 import com.example.circling.repository.User_infoRepository;
 import com.example.circling.security.UserDetailsImpl;
+import com.example.circling.service.Main_battle;
+import com.example.circling.service.Transformation;
 
 
 @RequestMapping("/game/home/battle")

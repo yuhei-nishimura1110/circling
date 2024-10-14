@@ -1,4 +1,4 @@
-package com.example.circling.game.service;
+package com.example.circling.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -7,7 +7,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.circling.entity.Party;
 import com.example.circling.entity.Player;
 import com.example.circling.entity.User_info;
-import com.example.circling.game.enumset.Experience;
+import com.example.circling.enumset.Experience;
 import com.example.circling.repository.PlayerRepository;
 import com.example.circling.repository.User_infoRepository;
 

@@ -1,4 +1,4 @@
-package com.example.circling.game.enumset;
+package com.example.circling.enumset;
 
 public enum Job {
 

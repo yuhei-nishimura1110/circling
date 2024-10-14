@@ -1,4 +1,4 @@
-package com.example.circling.game.enumset;
+package com.example.circling.enumset;
 
 public enum Fluctuation_Status {
 	HP(1, "HP"), MP(2, "MP"), FP(3, "FP"), CP(4, "CP");

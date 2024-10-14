@@ -1,4 +1,4 @@
-package com.example.circling.game.enumset;
+package com.example.circling.enumset;
 
 public enum Item_Strong {
 	type_1918(0), type_1936(1), type_1938(2), type_1940(3), type_1942(4), type_1945(5);

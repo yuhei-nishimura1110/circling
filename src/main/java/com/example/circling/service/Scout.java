@@ -1,13 +1,12 @@
-package com.example.circling.game.scout;
+package com.example.circling.service;
 
 import org.springframework.stereotype.Service;
 
 import com.example.circling.entity.Item;
 import com.example.circling.entity.Player;
 import com.example.circling.entity.User;
-import com.example.circling.game.enumset.Item_Strong;
-import com.example.circling.game.enumset.Job;
-import com.example.circling.game.service.Transformation;
+import com.example.circling.enumset.Item_Strong;
+import com.example.circling.enumset.Job;
 import com.example.circling.repository.PlayerRepository;
 
 @Service
@@ -171,7 +170,7 @@ public class Scout {
 			player.setJob(Job.SWORDER.getId());
 
 			Item item = new Item();
-			item.setItemkind(com.example.circling.game.enumset.Item.SWORD.getId());
+			item.setItemkind(com.example.circling.enumset.Item.SWORD.getId());
 			item.setItemstrong(Item_Strong.type_1918.getId());
 		}
 		case 1 -> {
@@ -179,7 +178,7 @@ public class Scout {
 			player.setJob(Job.ARCHER.getId());
 
 			Item item = new Item();
-			item.setItemkind(com.example.circling.game.enumset.Item.ARCH.getId());
+			item.setItemkind(com.example.circling.enumset.Item.ARCH.getId());
 			item.setItemstrong(Item_Strong.type_1918.getId());
 		}
 		case 2 -> {
@@ -187,7 +186,7 @@ public class Scout {
 			player.setJob(Job.BLACK_MAGICIAN.getId());
 
 			Item item = new Item();
-			item.setItemkind(com.example.circling.game.enumset.Item.CANE.getId());
+			item.setItemkind(com.example.circling.enumset.Item.CANE.getId());
 			item.setItemstrong(Item_Strong.type_1918.getId());
 		}
 		case 3 -> {
@@ -195,7 +194,7 @@ public class Scout {
 			player.setJob(Job.SHIELDER.getId());
 
 			Item item = new Item();
-			item.setItemkind(com.example.circling.game.enumset.Item.SHIELD.getId());
+			item.setItemkind(com.example.circling.enumset.Item.SHIELD.getId());
 			item.setItemstrong(Item_Strong.type_1918.getId());
 		}
 		case 4 -> {
@@ -203,7 +202,7 @@ public class Scout {
 			player.setJob(Job.MAGICIAN.getId());
 
 			Item item = new Item();
-			item.setItemkind(com.example.circling.game.enumset.Item.CANE.getId());
+			item.setItemkind(com.example.circling.enumset.Item.CANE.getId());
 			item.setItemstrong(Item_Strong.type_1918.getId());
 		}
 		case 5 -> {
@@ -211,7 +210,7 @@ public class Scout {
 			player.setJob(Job.WHITE_MAGICIAN.getId());
 
 			Item item = new Item();
-			item.setItemkind(com.example.circling.game.enumset.Item.CANE.getId());
+			item.setItemkind(com.example.circling.enumset.Item.CANE.getId());
 			item.setItemstrong(Item_Strong.type_1918.getId());
 		}
 		case 6 -> {
@@ -221,7 +220,7 @@ public class Scout {
 				player.setJob(Job.SPEARER.getId());
 
 				Item item = new Item();
-				item.setItemkind(com.example.circling.game.enumset.Item.SPEAR.getId());
+				item.setItemkind(com.example.circling.enumset.Item.SPEAR.getId());
 				item.setItemstrong(Item_Strong.type_1918.getId());
 
 			}
@@ -230,7 +229,7 @@ public class Scout {
 				player.setJob(Job.AXER.getId());
 
 				Item item = new Item();
-				item.setItemkind(com.example.circling.game.enumset.Item.AX.getId());
+				item.setItemkind(com.example.circling.enumset.Item.AX.getId());
 				item.setItemstrong(Item_Strong.type_1918.getId());
 			}
 			}
@@ -242,7 +241,7 @@ public class Scout {
 				player.setJob(Job.MELLETER.getId());
 
 				Item item = new Item();
-				item.setItemkind(com.example.circling.game.enumset.Item.MELLET.getId());
+				item.setItemkind(com.example.circling.enumset.Item.MELLET.getId());
 				item.setItemstrong(Item_Strong.type_1918.getId());
 			}
 			case 1 -> {
@@ -250,7 +249,7 @@ public class Scout {
 				player.setJob(Job.CLUBER.getId());
 
 				Item item = new Item();
-				item.setItemkind(com.example.circling.game.enumset.Item.CLUB.getId());
+				item.setItemkind(com.example.circling.enumset.Item.CLUB.getId());
 				item.setItemstrong(Item_Strong.type_1918.getId());
 			}
 			}
