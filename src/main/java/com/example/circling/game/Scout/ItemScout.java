@@ -2,8 +2,8 @@ package com.example.circling.game.scout;
 
 import org.springframework.stereotype.Service;
 
-import com.example.circling.game.entity.Party;
-import com.example.circling.game.entity.Player;
+import com.example.circling.entity.Party;
+import com.example.circling.entity.Player;
 import com.example.circling.game.service.Transformation;
 
 @Service

@@ -1,7 +1,7 @@
 package com.example.circling.game.form;
 
-import com.example.circling.game.entity.Family_name;
-import com.example.circling.game.repository.Family_nameRepository;
+import com.example.circling.entity.Family_name;
+import com.example.circling.repository.Family_nameRepository;
 
 import lombok.Data;
 

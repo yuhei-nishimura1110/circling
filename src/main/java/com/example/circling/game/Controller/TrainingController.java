@@ -15,21 +15,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.circling.circling.entity.User;
-import com.example.circling.circling.repository.UserRepository;
-import com.example.circling.game.entity.Item;
-import com.example.circling.game.entity.Party;
-import com.example.circling.game.entity.Player;
-import com.example.circling.game.entity.User_info;
+import com.example.circling.entity.Item;
+import com.example.circling.entity.Party;
+import com.example.circling.entity.Player;
+import com.example.circling.entity.User;
+import com.example.circling.entity.User_info;
 import com.example.circling.game.form.ChangeJob;
 import com.example.circling.game.form.ItemForm;
 import com.example.circling.game.form.PlayerNameEditForm;
 import com.example.circling.game.form.Playertrainingform;
-import com.example.circling.game.repository.ItemRepository;
-import com.example.circling.game.repository.PartyRepository;
-import com.example.circling.game.repository.PlayerRepository;
-import com.example.circling.game.repository.User_infoRepository;
 import com.example.circling.game.service.Transformation;
+import com.example.circling.repository.ItemRepository;
+import com.example.circling.repository.PartyRepository;
+import com.example.circling.repository.PlayerRepository;
+import com.example.circling.repository.UserRepository;
+import com.example.circling.repository.User_infoRepository;
 import com.example.circling.security.UserDetailsImpl;
 
 @RequestMapping("/game/home/training")

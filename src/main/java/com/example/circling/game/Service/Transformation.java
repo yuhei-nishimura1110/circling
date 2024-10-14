@@ -4,12 +4,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.circling.game.entity.Party;
-import com.example.circling.game.entity.Player;
-import com.example.circling.game.entity.User_info;
+import com.example.circling.entity.Party;
+import com.example.circling.entity.Player;
+import com.example.circling.entity.User_info;
 import com.example.circling.game.enumset.Experience;
-import com.example.circling.game.repository.PlayerRepository;
-import com.example.circling.game.repository.User_infoRepository;
+import com.example.circling.repository.PlayerRepository;
+import com.example.circling.repository.User_infoRepository;
 
 @Service
 public class Transformation {

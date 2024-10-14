@@ -2,14 +2,14 @@ package com.example.circling.game.battle;
 
 import java.util.ArrayList;
 
-import com.example.circling.circling.entity.User;
-import com.example.circling.game.entity.Item;
-import com.example.circling.game.entity.Party;
-import com.example.circling.game.entity.Player;
+import com.example.circling.entity.Item;
+import com.example.circling.entity.Party;
+import com.example.circling.entity.Player;
+import com.example.circling.entity.User;
 import com.example.circling.game.form.BattleForm;
-import com.example.circling.game.repository.ItemRepository;
-import com.example.circling.game.repository.PlayerRepository;
 import com.example.circling.game.service.Transformation;
+import com.example.circling.repository.ItemRepository;
+import com.example.circling.repository.PlayerRepository;
 
 public class Main_battle {
 	public int m(Player player) {

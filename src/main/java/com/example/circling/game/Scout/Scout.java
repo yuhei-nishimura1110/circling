@@ -2,13 +2,13 @@ package com.example.circling.game.scout;
 
 import org.springframework.stereotype.Service;
 
-import com.example.circling.circling.entity.User;
-import com.example.circling.game.entity.Item;
-import com.example.circling.game.entity.Player;
+import com.example.circling.entity.Item;
+import com.example.circling.entity.Player;
+import com.example.circling.entity.User;
 import com.example.circling.game.enumset.Item_Strong;
 import com.example.circling.game.enumset.Job;
-import com.example.circling.game.repository.PlayerRepository;
 import com.example.circling.game.service.Transformation;
+import com.example.circling.repository.PlayerRepository;
 
 @Service
 public class Scout {

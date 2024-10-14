@@ -5,7 +5,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.circling.circling.entity.User;
+import com.example.circling.entity.User;
 
 public class UserDetailsImpl implements UserDetails {
 	private final User user;
