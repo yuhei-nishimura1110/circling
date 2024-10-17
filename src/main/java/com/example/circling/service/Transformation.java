@@ -32,6 +32,7 @@ public class Transformation {
 
 			player.setHp(hpPoint);
 		}
+		
 		case 2 -> {
 			int mpPoint = 0;
 			if (player.getMagic() * player.getMagic() * player.getTechnique() < player.getMp() + addPoint) {
